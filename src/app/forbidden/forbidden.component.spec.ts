@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnnotatorComponent } from './annotator.component';
+import { ForbiddenComponent } from './forbidden.component';
 
-describe('AnnotatorComponent', () => {
-  let component: AnnotatorComponent;
-  let fixture: ComponentFixture<AnnotatorComponent>;
+describe('ForbiddenComponent', () => {
+  let component: ForbiddenComponent;
+  let fixture: ComponentFixture<ForbiddenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AnnotatorComponent ]
+      declarations: [ ForbiddenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AnnotatorComponent);
+    fixture = TestBed.createComponent(ForbiddenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
