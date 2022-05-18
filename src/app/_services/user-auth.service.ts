@@ -14,12 +14,20 @@ export class UserAuthService {
     return JSON.parse(localStorage.getItem('roles') || "{}");
   }
 
-  public setToken(jwtToken: string) {
-    localStorage.setItem('jwtToken', jwtToken);
+  public setAccessToken(accessToken: string) {
+    localStorage.setItem('accessToken', accessToken);
   }
 
-  public getToken(): string {
-    return localStorage.getItem('jwtToken') || "";
+  public setRefreshToken(refreshToken: string) {
+    localStorage.setItem("refreshToken", refreshToken)
+  }
+
+  public getAccessToken(): string {
+    return localStorage.getItem('accessToken') || "";
+  }
+
+  public getRefreshToken(): string {
+    return localStorage.getItem('refreshToken') || "";
   }
 
   public clear() {
@@ -27,6 +35,6 @@ export class UserAuthService {
   }
 
   public isLoggedIn() {
-    return this.getRoles() && this.getToken();
+    return this.getRoles() && this.getAccessToken();
   }
 }

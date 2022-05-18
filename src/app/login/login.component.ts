@@ -1,39 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../_services/login.service';
 import { UserAuthService } from '../_services/user-auth.service';
-import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+
+export class LoginComponent {
+
+  @Input() error?: string;
+
+  @Output() submitEventmitter = new EventEmitter();
+
   constructor(
-    private userService: UserService,
+    private loginService: LoginService,
     private userAuthService: UserAuthService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  form: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+  });
 
-  login(loginForm: NgForm) {
-    this.userService.login(loginForm.value).subscribe(
+  submit() {
+    this.loginService.login(this.form.value).subscribe(
       (response: any) => {
-        this.userAuthService.setRoles(response.user.role);
-        this.userAuthService.setToken(response.jwtToken);
-
-        const role = response.user.role[0].roleName;
-        if (role === 'Admin') {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/user']);
+        this.userAuthService.setAccessToken(response.accessToken)
+        this.userAuthService.setRefreshToken(response.refreshToken)
+        let role: string = response.user.role;
+        if (role === "ROLE_ADMIN") {
+          this.router.navigate(["/admin"])
         }
-      },
-      (error) => {
-        console.log(error);
+        else {
+          this.router.navigate(["/annotator"])
+        }
       }
-    );
+    ),
+    (error: any) => {
+      console.log(error)
+    }
   }
+
 }

@@ -5,7 +5,7 @@ import { UserAuthService } from './user-auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class LoginService {
   PATH_OF_API = 'http://localhost:9090';
 
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
@@ -15,21 +15,8 @@ export class UserService {
   ) {}
 
   public login(loginData: object) {
-    return this.httpclient.post(this.PATH_OF_API + '/authenticate', loginData, {
+    return this.httpclient.post(this.PATH_OF_API + '/login', loginData, {
       headers: this.requestHeader,
-    });
-  }
-
-  public forUser() {
-    return this.httpclient.get(this.PATH_OF_API + '/forUser', {
-      responseType: 'text',
-    });
-  }
-
-
-  public forAdmin() {
-    return this.httpclient.get(this.PATH_OF_API + '/forAdmin', {
-      responseType: 'text',
     });
   }
 
@@ -50,4 +37,5 @@ export class UserService {
     }
     return false;
   }
+  
 }

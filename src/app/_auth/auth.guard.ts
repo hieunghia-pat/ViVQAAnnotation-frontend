@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserAuthService } from '../_services/user-auth.service';
-import { UserService } from '../_services/user.service';
+import { LoginService } from '../_services/login.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private userAuthService: UserAuthService,
     private router: Router,
-    private userService: UserService
+    private loginService: LoginService
   ) {}
 
   canActivate(
@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
       const role = route.data['roles'] as Array<string>;
 
       if (role) {
-        const match = this.userService.roleMatch(role);
+        const match = this.loginService.roleMatch(role);
 
         if (match) {
           return true;

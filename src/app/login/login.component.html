@@ -1,25 +1,27 @@
-<div class="container mt-5">
-    <div class="card" style="padding: 20px;">
-        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-            <input type="text"
-            ngModel
-            name="userName"
-            id="userName"
-            placeholder="Enter your username"
-            class="form-control mb-3"
-            >
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <p>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Username" formControlName="username">
+                </mat-form-field>
+            </p>
 
-            <input type="password"
-            ngModel
-            name="userPassword"
-            id="userPassword"
-            placeholder="Enter your password"
-            class="form-control mb-3"
-            >
+            <p>
+                <mat-form-field>
+                    <input type="password" matInput placeholder="Password" formControlName="password">
+                </mat-form-field>
+            </p>
 
-            <input type="submit"
-            value="Login"
-            class="btn btn-outline-primary form-control rounded-0">
+            <p *ngIf="error" class="error">
+                {{ error }}
+            </p>
+
+            <div class="button">
+                <button type="submit" mat-flat-button color="primary">Login</button>
+            </div>
+
         </form>
-    </div>
-</div>
+    </mat-card-content>
+</mat-card>

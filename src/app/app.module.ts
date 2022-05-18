@@ -3,35 +3,40 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './_auth/auth.guard';
 import { AuthInterceptor } from './_auth/auth.interceptor';
-import { UserService } from './_services/user.service';
+import { LoginService } from './_services/login.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button"
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    AdminComponent,
-    UserComponent,
+    // AdminComponent,
     LoginComponent,
-    HeaderComponent,
-    ForbiddenComponent
+    // HeaderComponent,
+    // ForbiddenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     AuthGuard,
@@ -40,7 +45,7 @@ import { UserService } from './_services/user.service';
       useClass:AuthInterceptor,
       multi:true
     },
-    UserService
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
