@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../_services/login.service';
-import { UserAuthService } from '../_services/user-auth.service';
+import { LoginService } from '../services/login.service';
+import { UserAuthService } from '../services/user-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -30,9 +30,11 @@ export class LoginComponent {
   submit() {
     this.loginService.login(this.form.value).subscribe(
       (response: any) => {
-        this.userAuthService.setAccessToken(response.accessToken)
-        this.userAuthService.setRefreshToken(response.refreshToken)
-        let role: string = response.user.role;
+        this.loginService.isLoggedIn = true
+        this.userAuthService.setAccessToken(response.access_token)
+        this.userAuthService.setRefreshToken(response.refresh_token)
+        let role: string = response.role;
+        this.userAuthService.setRole(role)
         if (role === "ROLE_ADMIN") {
           this.router.navigate(["/admin"])
         }
@@ -42,7 +44,8 @@ export class LoginComponent {
       }
     ),
     (error: any) => {
-      console.log(error)
+      
+      console.error("Error occured! " + error)
     }
   }
 

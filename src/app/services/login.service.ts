@@ -6,9 +6,11 @@ import { UserAuthService } from './user-auth.service';
   providedIn: 'root',
 })
 export class LoginService {
-  PATH_OF_API = 'http://localhost:9090';
-
+  PATH_OF_API = 'http://localhost:8080';
+  redirectUrl: string | null = null;
+  isLoggedIn: boolean = false;
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
+
   constructor(
     private httpclient: HttpClient,
     private userAuthService: UserAuthService
@@ -17,25 +19,15 @@ export class LoginService {
   public login(loginData: object) {
     return this.httpclient.post(this.PATH_OF_API + '/login', loginData, {
       headers: this.requestHeader,
-    });
+    })
   }
 
-  public roleMatch(allowedRoles: string[]): boolean {
-    let isMatch = false;
-    const userRoles: any = this.userAuthService.getRoles();
+  public roleMatch(allowedRole: string): boolean {
+    const userRole: any = this.userAuthService.getRole();
 
-    if (userRoles != null && userRoles) {
-      for (let i = 0; i < userRoles.length; i++) {
-        for (let j = 0; j < allowedRoles.length; j++) {
-          if (userRoles[i].roleName === allowedRoles[j]) {
-            return true
-          } else {
-            return isMatch;
-          }
-        }
-      }
-    }
-    return false;
+    if (userRole === allowedRole)
+      return true;
+    
+      return false;
   }
-  
 }
