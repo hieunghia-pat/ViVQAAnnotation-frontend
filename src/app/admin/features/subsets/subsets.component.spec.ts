@@ -9,12 +9,22 @@ describe('SubsetsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ SubsetsComponent ]
+import { AnnotatorComponent } from './annotator.component';
+
+describe('AnnotatorComponent', () => {
+  let component: AnnotatorComponent;
+  let fixture: ComponentFixture<AnnotatorComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ AnnotatorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SubsetsComponent);
+    fixture = TestBed.createComponent(AnnotatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
