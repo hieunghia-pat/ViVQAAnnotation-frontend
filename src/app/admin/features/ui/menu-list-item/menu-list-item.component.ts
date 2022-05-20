@@ -1,10 +1,8 @@
-
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { NavItem } from './model/nav-item';
 import { Router } from '@angular/router';
-import { NavService } from '../../../../_services/nav.service';
+import { NavService } from 'src/app/services/nav.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { NativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-menu-list-item',
