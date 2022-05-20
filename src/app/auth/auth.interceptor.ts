@@ -20,6 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+
     if (req.headers.get('No-Auth') === 'True') {
       return next.handle(req.clone());
     }
@@ -37,7 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 } else if(err.status === 403) {
                     this.router.navigate(['/forbidden']);
                 }
-                return throwError("Some thing is wrong");
+                return throwError(() => new Error("Something went wrong"));
             }
         )
     );

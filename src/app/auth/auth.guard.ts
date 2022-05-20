@@ -6,7 +6,6 @@ import {
   Router,
 } from '@angular/router';
 import { LoginService } from '../services/login.service';
-import { UserAuthService } from '../services/user-auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +13,7 @@ import { UserAuthService } from '../services/user-auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private loginService: LoginService,
-    private userAuthService: UserAuthService
+    private loginService: LoginService
   ) {}
 
   canActivate(
@@ -25,7 +23,7 @@ export class AuthGuard implements CanActivate {
   {
     console.log("Previous url is " + state.url)
 
-    if (this.userAuthService.isLoggedIn()) {
+    if (this.loginService.isLoggedIn) {
       const allowedRole = route.data['role'] as string;
 
       if (allowedRole) {

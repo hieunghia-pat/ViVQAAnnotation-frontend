@@ -5,10 +5,12 @@ import { AnnotatorComponent } from './annotator/annotator.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full"},
   { path: "login", component: LoginComponent, data: { title: "Login" } },
+  { path: "logout", component: LogoutComponent, data: { title: "Logout" } },
   { path: 'admin', component: AdminComponent, data: { title: "Admin", role: "ROLE_ADMIN" }, canActivate: [AuthGuard] },
   { path: 'annotator', component: AnnotatorComponent, data: { title: "Annotator", role: "ROLE_ANNOTATOR" }, canActivate: [AuthGuard] },
   { path: "forbidden", component: ForbiddenComponent }

@@ -17,6 +17,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     AdminComponent,
     LoginComponent,
     AnnotatorComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +44,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass:AuthInterceptor,
-      multi:true
+      useClass: AuthInterceptor,
+      multi: true
     },
     LoginService
   ],

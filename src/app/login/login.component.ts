@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { UserAuthService } from '../services/user-auth.service';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,9 @@ import { UserAuthService } from '../services/user-auth.service';
   styleUrls: ['./login.component.css'],
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  @Input() error?: string;
+  @Input() error?: string | null;
 
   @Output() submitEventmitter = new EventEmitter();
 
@@ -20,12 +21,19 @@ export class LoginComponent {
     private loginService: LoginService,
     private userAuthService: UserAuthService,
     private router: Router
-  ) {}
+  ) { }
 
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });
+
+  ngOnInit(): void {
+    if (this.loginService.isLoggedIn) {
+      this.router.navigate(["/logout"])
+    }
+  }
+
 
   submit() {
     this.loginService.login(this.form.value).subscribe(
@@ -41,12 +49,11 @@ export class LoginComponent {
         else {
           this.router.navigate(["/annotator"])
         }
+      },
+      error => {
+        this.error = this.loginService.errorMessage
       }
-    ),
-    (error: any) => {
-      
-      console.error("Error occured! " + error)
-    }
+    )
   }
 
 }
