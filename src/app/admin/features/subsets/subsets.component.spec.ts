@@ -23,15 +23,8 @@ describe('AnnotatorComponent', () => {
   });
 
   beforeEach(() => {
-<<<<<<< HEAD
-    fixture = TestBed.createComponent(AnnotatorComponent);
-=======
-<<<<<<< HEAD:src/app/admin/features/subsets/subsets.component.spec.ts
     fixture = TestBed.createComponent(SubsetsComponent);
-=======
     fixture = TestBed.createComponent(AnnotatorComponent);
->>>>>>> 649a42920c9e7714b3a56dd8360fe1d497d1a71a:src/app/annotator/annotator.component.spec.ts
->>>>>>> 649a42920c9e7714b3a56dd8360fe1d497d1a71a
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
