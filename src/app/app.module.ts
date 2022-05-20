@@ -11,11 +11,15 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginService } from './services/login.service';
+import { MenuListItemComponent } from './admin/ui/menu-list-item/menu-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
 import { CommonModule } from '@angular/common';
 
 import { AnnotatorComponent } from './annotator/annotator.component'
@@ -25,6 +29,8 @@ import { LogoutComponent } from './logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
+    MenuListItemComponent,
+    AdminComponent,
     LoginComponent,
     AnnotatorComponent,
     ForbiddenComponent,
@@ -42,6 +48,9 @@ import { LogoutComponent } from './logout/logout.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
     CommonModule
   ],
   providers: [
