@@ -28,6 +28,7 @@ export class LoginComponent {
   });
 
   submit() {
+    console.log(this.form.value)
     this.loginService.login(this.form.value).subscribe(
       (response: any) => {
         this.userAuthService.setAccessToken(response.accessToken)
