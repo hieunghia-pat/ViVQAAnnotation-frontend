@@ -17,8 +17,6 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import {NgStyle} from "@angular/common"
-import {NgClass} from "@angular/common"
 
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
@@ -27,7 +25,6 @@ import { LogoutComponent } from './logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
     LoginComponent,
     AnnotatorComponent,
     ForbiddenComponent,
@@ -45,10 +42,7 @@ import { LogoutComponent } from './logout/logout.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    CommonModule,
-    NgStyle,
-    NgClass
-
+    CommonModule
   ],
   providers: [
     AuthGuard,
