@@ -4,23 +4,16 @@ export let menu: NavItem[] = [
   {
     displayName: 'Annotators',
     iconName: 'annotators',
-    route: 'annotators'
+    route: '/admin/annotators'
   },
   {
     displayName: 'Subsets',
     iconName: 'subset',
-    route: 'subsets',
-    children: [
-      {
-        displayName: 'Subset_Info',
-        iconName: 'subset_info',
-        route: 'subsets/subset_info'
-      }
-    ]
+    route: '/admin/subsets'
   },
   {
     displayName: 'Statictics',
     iconName: 'statistics',
-    route: 'statistics'
+    route: 'admin/statistics'
   }
 ];

@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginService } from './services/login.service';
-import { MenuListItemComponent } from './admin/ui/menu-list-item/menu-list-item.component';
+import { MenuListItemComponent } from './admin/subsets/menu-list-item/menu-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from "@angular/material/input";
@@ -21,10 +21,11 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { CommonModule } from '@angular/common';
-
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
+import { SubsetItemComponent } from './admin/subsets/subset-item/subset-item.component';
+import { SubsetsComponent } from './admin/subsets/subsets.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { LogoutComponent } from './logout/logout.component';
     LoginComponent,
     AnnotatorComponent,
     ForbiddenComponent,
-    LogoutComponent
+    LogoutComponent,
+    SubsetsComponent,
+    SubsetItemComponent
   ],
   imports: [
     BrowserModule,

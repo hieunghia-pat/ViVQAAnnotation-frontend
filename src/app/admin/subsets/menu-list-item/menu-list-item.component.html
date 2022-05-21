@@ -4,7 +4,7 @@
   <mat-icon class="routeIcon">{{item.iconName}}</mat-icon>
   <span class="menu-item-text">{{item.displayName}}</span>
   <span fxflex class="twistie-separator"></span>
-  <span  *ngIf="item.children && item.children.length">
+  <span *ngIf="item.children && item.children.length">
     <mat-icon class="menu-twistie" [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
       expand_more
     </mat-icon>
