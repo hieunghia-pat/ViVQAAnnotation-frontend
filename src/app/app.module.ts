@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
@@ -11,7 +10,6 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginService } from './services/login.service';
-import { MenuListItemComponent } from './admin/subsets/menu-list-item/menu-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from "@angular/material/input";
@@ -24,20 +22,16 @@ import { CommonModule } from '@angular/common';
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
-import { SubsetItemComponent } from './admin/subsets/subset-item/subset-item.component';
-import { SubsetsComponent } from './admin/subsets/subsets.component';
+import { FileManagerModule } from './admin/file-manager/file-manager.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuListItemComponent,
     AdminComponent,
     LoginComponent,
     AnnotatorComponent,
     ForbiddenComponent,
-    LogoutComponent,
-    SubsetsComponent,
-    SubsetItemComponent
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +48,8 @@ import { SubsetsComponent } from './admin/subsets/subsets.component';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    CommonModule
+    CommonModule,
+    FileManagerModule
   ],
   providers: [
     AuthGuard,
