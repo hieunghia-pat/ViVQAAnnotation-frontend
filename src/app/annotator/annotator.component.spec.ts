@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SubsetsComponent } from './subsets.component';
-
+import { AnnotatorComponent } from './annotator.component';
+import {SubsetsComponent} from '../admin/subsets/subsets.component'
 describe('SubsetsComponent', () => {
   let component: SubsetsComponent;
-  let fixture: ComponentFixture<SubsetsComponent>;
+  let fixture: ComponentFixture<SubsetsComponent>;});
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubsetsComponent ]
-import { AnnotatorComponent } from './annotator.component';
+      declarations: [ SubsetsComponent ]})
+  });
 
-describe('AnnotatorComponent', () => {
+  describe('AnnotatorComponent', () => {
   let component: AnnotatorComponent;
   let fixture: ComponentFixture<AnnotatorComponent>;
 
@@ -23,20 +22,13 @@ describe('AnnotatorComponent', () => {
   });
 
   beforeEach(() => {
-<<<<<<< HEAD
     fixture = TestBed.createComponent(AnnotatorComponent);
-=======
-<<<<<<< HEAD:src/app/admin/features/subsets/subsets.component.spec.ts
-    fixture = TestBed.createComponent(SubsetsComponent);
-=======
-    fixture = TestBed.createComponent(AnnotatorComponent);
->>>>>>> 649a42920c9e7714b3a56dd8360fe1d497d1a71a:src/app/annotator/annotator.component.spec.ts
->>>>>>> 649a42920c9e7714b3a56dd8360fe1d497d1a71a
+
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+})

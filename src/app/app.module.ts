@@ -11,24 +11,49 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginService } from './services/login.service';
+import { MenuListItemComponent } from './admin/ui/menu-list-item/menu-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatListModule } from '@angular/material/list'
 import { CommonModule } from '@angular/common';
+import { CoreModule } from '@core/core.module';
+import { SharedModule } from '@shared/shared.module';
+// import { MatProgressSpinnerModule } from '@angular/material';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
+import { AnnotatorListComponent } from './admin/annotators/annotators.component';
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { LoadingSpinner } from '@shared/components';
+import { Navbar } from '@shared/components';
+import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annotators/components';
+
 @NgModule({
   declarations: [
     AppComponent,
+    MenuListItemComponent,
+    AdminComponent,
     LoginComponent,
     AnnotatorComponent,
     ForbiddenComponent,
-    LogoutComponent
+    LogoutComponent,
+    AnnotatorListComponent,
+    AnnotatorsTable,
+    AnnotatorsForm,
+    AnnotatorsModal,
+    LoadingSpinner,
+    Navbar
   ],
   imports: [
     BrowserModule,
@@ -42,7 +67,17 @@ import { LogoutComponent } from './logout/logout.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    CommonModule
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    CommonModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    CoreModule,
+    SharedModule
   ],
   providers: [
     AuthGuard,

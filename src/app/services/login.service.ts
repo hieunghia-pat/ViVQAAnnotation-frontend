@@ -7,7 +7,7 @@ import { catchError, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  PATH_OF_API = 'http://localhost:8080';
+  PATH_OF_API = 'https://openvivqa-nlp-uit.herokuapp.com';
   redirectUrl: string | null = null;
   isLoggedIn: boolean = false;
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
