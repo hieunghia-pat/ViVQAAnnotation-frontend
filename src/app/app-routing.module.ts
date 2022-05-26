@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminComponent } from './admin/admin.component';
 import { AnnotatorsComponent } from './admin/annotators/annotators.component';
-import { SubsetsComponent } from './admin/subsets/subsets.component';
 import { StatisticsComponent } from './admin/statistics/statistics.component';
 
 const routes: Routes = [
@@ -19,7 +18,7 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'annotators', component: AnnotatorsComponent, data: { title: "Annotators" } },
-      { path: 'subsets', component: SubsetsComponent, data: { title: "Subsets" } },
+      // { path: 'subsets', component: SubsetsComponent, data: { title: "Subsets" } },
       { path: 'statistics', component: StatisticsComponent, data: { title: "Statistics" } }
     ],
     data: { title: "Admin", role: "ROLE_ADMIN" },

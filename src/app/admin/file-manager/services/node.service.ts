@@ -110,7 +110,7 @@ export class NodeService {
     return result;
   }
 
-  public findNodeByIdHelper(id: number, node: NodeInterface = this.tree.nodes): NodeInterface {
+  public findNodeByIdHelper(id: number, node: NodeInterface = this.tree.nodes): NodeInterface | null{
     if (node.id === id) {
       return node;
     }
