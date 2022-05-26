@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     height: 100%;
   }
@@ -14,27 +13,3 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     border: none;
     outline: none;
   }
-=======
-mat-sidenav-container,
-mat-sidenav-content,
-mat-sidenav {
-  height: 100%;
-}
-
-.mat-sidenav {
-  width: 220px;
-}
-
-button.menu-button {
-  color: inherit;
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  outline: none;
-}
-
-.logout-button {
-  position: relative;
-  right: 0rem;
-}
->>>>>>> 4acdda1f7e4f254f09e5c7edebb1718e0dd5dc9c

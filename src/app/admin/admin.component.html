@@ -1,5 +1,4 @@
 <mat-toolbar color="primary">
-<<<<<<< HEAD
     <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
       <mat-icon>menu</mat-icon>
     </button>
@@ -16,24 +15,3 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-=======
-  <button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide fxShow.lt-md>
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Admin page</span>
-  <button class="logout-button" mat-icon-button (click)="logout()">
-    <mat-icon matTooltip="Logout" >logout</mat-icon>
-  </button>
-</mat-toolbar>
-
-<mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" [opened]="opened">
-    <mat-nav-list>
-      <app-menu-list-item *ngFor="let item of menu" [item]="item"></app-menu-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
->>>>>>> 4acdda1f7e4f254f09e5c7edebb1718e0dd5dc9c
