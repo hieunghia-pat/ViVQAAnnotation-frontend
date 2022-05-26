@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { UserAuthService } from '../services/user-auth.service';
-import { Router } from '@angular/router';
+//import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { NavItem } from './ui/menu-list-item/model/nav-item';
+import { MediaChange, MediaObserver } from "@angular/flex-layout";
+import { Subscription } from 'rxjs';
+import { menu } from './ui/menu-list-item/model/menu';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -11,13 +14,21 @@ export class AdminComponent {
 
     public opened: boolean = true;
 
-    constructor(
-      private userAuthService: UserAuthService,
-      private router: Router) {
+    constructor(private media: MediaObserver) {
+      this.mediaWatcher = this.media.media$.subscribe((mediaChange: MediaChange) => {
+          this.handleMediaChange(mediaChange);
+      })
     }
 
-    logout(): void {
-      this.userAuthService.clear()
-      this.router.navigate(["/login"])
+    private handleMediaChange(mediaChange: MediaChange) {
+      if (this.media.isActive('lt-md')) {
+          this.opened = false;
+      } else {
+          this.opened = true;
+      }
+    }
+
+    ngOnDestroy() {
+      this.mediaWatcher.unsubscribe();
     }
 }
