@@ -24,13 +24,9 @@ import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 // import { MatProgressSpinnerModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { AnnotatorListComponent } from './admin/annotators/annotators.component';
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
-import { FileManagerModule } from './admin/file-manager/file-manager.module';
-
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -47,10 +43,10 @@ import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annota
     AnnotatorComponent,
     ForbiddenComponent,
     LogoutComponent,
-    AnnotatorListComponent,
     AnnotatorsTable,
     AnnotatorsForm,
     AnnotatorsModal,
+    MenuListItemComponent,
     LoadingSpinner,
     Navbar
   ],

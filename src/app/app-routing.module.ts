@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
-import { AnnotatorListComponent } from './admin/annotators/annotators.component';
-import { StatisticsComponent } from './admin/statistics/statistics.component';
-import { SubsetsComponent } from './admin/subsets/subsets.component';
 import { AnnotatorComponent } from './annotator/annotator.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
@@ -24,8 +20,7 @@ const routes: Routes = [
 //     { path: 'statistics', loadChildren: () => import('./admin/statistics/statistics.module').then(m => m.StatisticsModule) }
 // ]
       children : [
-        {path : 'annotators',component : AnnotatorListComponent, data : {title : 'Annotators'}},
-        {path : 'subsets',component : SubsetsComponent, data : {title : 'Subsets'}},
+        {path : 'annotators',component : AnnotatorComponent, data : {title : 'Annotators Manager'}},
         {path : 'statistics',component : StatisticsComponent, data : {title : 'Statistics'}}
       ]
 }

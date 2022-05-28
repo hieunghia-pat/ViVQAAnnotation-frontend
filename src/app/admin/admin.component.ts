@@ -1,4 +1,3 @@
-//import { Component, OnInit } from '@angular/core';
 import { Component, OnDestroy } from '@angular/core';
 import { NavItem } from './ui/menu-list-item/model/nav-item';
 import { MediaChange, MediaObserver } from "@angular/flex-layout";
@@ -10,9 +9,11 @@ import { menu } from './ui/menu-list-item/model/menu';
   styleUrls: ['./admin.component.css']
 })
 
-export class AdminComponent {
+export class AdminComponent implements OnDestroy {
 
     public opened: boolean = true;
+    private mediaWatcher: Subscription = new Subscription() ;
+    public menu: NavItem[] = menu;
 
     constructor(private media: MediaObserver) {
       this.mediaWatcher = this.media.media$.subscribe((mediaChange: MediaChange) => {
