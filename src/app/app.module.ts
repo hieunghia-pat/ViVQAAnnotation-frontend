@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
@@ -25,14 +24,12 @@ import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 // import { MatProgressSpinnerModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { AnnotatorListComponent } from './admin/annotators/annotators.component';
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
 // import { SubsetItemComponent } from './admin/subsets/subset-item/subset-item.component';
 // import { SubsetsComponent } from './admin/subsets/subsets.component';
-
+import { AnnotatorListComponent } from './admin/annotators/annotators.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -43,17 +40,17 @@ import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annota
 
 @NgModule({
   declarations: [
+    AnnotatorListComponent,
     AppComponent,
-    MenuListItemComponent,
     AdminComponent,
     LoginComponent,
     AnnotatorComponent,
     ForbiddenComponent,
     LogoutComponent,
-    AnnotatorListComponent,
     AnnotatorsTable,
     AnnotatorsForm,
     AnnotatorsModal,
+    MenuListItemComponent,
     LoadingSpinner,
     Navbar
   ],

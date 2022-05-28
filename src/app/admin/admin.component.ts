@@ -1,4 +1,3 @@
-//import { Component, OnInit } from '@angular/core';
 import { Component, OnDestroy } from '@angular/core';
 import { NavItem } from './ui/menu-list-item/model/nav-item';
 import { MediaChange, MediaObserver } from "@angular/flex-layout";
