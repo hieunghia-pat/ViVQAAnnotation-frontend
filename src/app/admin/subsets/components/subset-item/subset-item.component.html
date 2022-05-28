@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-title-group>
+        <mat-card-title>
+            <div class="div-background" ></div>
+            <div [align]="'center'"><a (click)="onSubsetClick()">Subset {{data.subsetId}}</a></div>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <div [align]="'center'">
+                <mat-icon>image</mat-icon>
+                <span> {{data.totalImages}} </span>
+            </div>
+            <div [align]="'center'">
+                <mat-icon>person</mat-icon>
+                <span> {{data.totalAnnotators}} </span>
+            </div>
+            <div [align]="'center'">
+                <mat-icon>question_answer</mat-icon>
+                <span> {{data.totalAnnotations}} </span>
+            </div>
+        </mat-card-subtitle>
+    </mat-card-title-group>
+</mat-card>

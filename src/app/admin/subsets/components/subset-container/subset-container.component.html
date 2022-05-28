@@ -1,0 +1,5 @@
+<mat-grid-list cols="5" >
+    <mat-grid-tile *ngFor="let subsetItem of subsetItems" >
+        <app-subset-item [data]="subsetItem"></app-subset-item>
+    </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,16 @@
+.div-background {
+    width: auto;
+    height: auto;
+    background-image: url("src/assets/images/folder.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+a {
+    color:black;
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}

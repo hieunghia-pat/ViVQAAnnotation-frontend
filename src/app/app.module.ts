@@ -22,13 +22,10 @@ import { MatListModule } from '@angular/material/list'
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
-// import { MatProgressSpinnerModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
-// import { SubsetItemComponent } from './admin/subsets/subset-item/subset-item.component';
-// import { SubsetsComponent } from './admin/subsets/subsets.component';
 import { AnnotatorListComponent } from './admin/annotators/annotators.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
@@ -37,6 +34,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoadingSpinner } from '@shared/components';
 import { Navbar } from '@shared/components';
 import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annotators/components';
+import { SubsetsModule } from './admin/subsets/subsets.module';
+import { SubsetComponent } from './admin/subset/subset.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +51,8 @@ import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annota
     AnnotatorsModal,
     MenuListItemComponent,
     LoadingSpinner,
-    Navbar
+    Navbar,
+    SubsetComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +76,8 @@ import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annota
     MatTooltipModule,
     MatProgressSpinnerModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    SubsetsModule
   ],
   providers: [
     AuthGuard,
