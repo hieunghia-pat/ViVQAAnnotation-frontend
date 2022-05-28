@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { NavItem } from '../model/nav-item';
+import { NavItem } from './model/nav-item';
 import { Router } from '@angular/router';
 import { NavService } from 'src/app/services/nav.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';

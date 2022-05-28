@@ -9,10 +9,6 @@ import { AuthGuard } from './auth/auth.guard';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { AdminComponent } from './admin/admin.component';
-import { AnnotatorsComponent } from './admin/annotators/annotators.component';
-import { SubsetsComponent } from './admin/subsets/subsets.component';
-import { StatisticsComponent } from './admin/statistics/statistics.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full"},
@@ -38,4 +34,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -30,8 +30,8 @@ import { AnnotatorListComponent } from './admin/annotators/annotators.component'
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
-import { SubsetItemComponent } from './admin/subsets/subset-item/subset-item.component';
-import { SubsetsComponent } from './admin/subsets/subsets.component';
+// import { SubsetItemComponent } from './admin/subsets/subset-item/subset-item.component';
+// import { SubsetsComponent } from './admin/subsets/subsets.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
