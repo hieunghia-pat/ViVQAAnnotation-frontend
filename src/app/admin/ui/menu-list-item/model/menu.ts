@@ -3,17 +3,22 @@ import { NavItem } from './nav-item';
 export let menu: NavItem[] = [
   {
     displayName: 'Annotators',
-    iconName: 'annotators',
+    iconName: 'person',
     route: '/admin/annotators'
   },
   {
     displayName: 'Subsets',
-    iconName: 'subset',
+    iconName: 'folder',
     route: 'admin/subsets'
   },
   {
     displayName: 'Statictics',
-    iconName: 'statistics',
+    iconName: 'leaderboard',
     route: 'admin/statistics'
+  },
+  {
+    displayName: "Assignment",
+    iconName: "assignment",
+    route: "admin/assignment"
   }
 ];

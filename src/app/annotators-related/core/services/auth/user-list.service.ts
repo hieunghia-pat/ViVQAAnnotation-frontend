@@ -21,7 +21,7 @@ export class UserListService {
       this.globalDataService.currentUser$.getValue();
 
     const httpData: HTTP_REQ = {
-      url: 'api/v1/annotator/get',
+      url: 'api/v1/annotators/get',
       params: { role_lte: 1 },
     };
     const { success, error, data } = await this.apiService.get(httpData);
@@ -59,7 +59,7 @@ export class UserListService {
       //const { success, error, data } = await this.apiService.get(httpData);
       const userUUID : string = uuidv4();
       const profileHttpData: HTTP_REQ = {
-        url: 'api/v1/annotator/add',
+        url: 'api/v1/annotators/add',
         body: {
           id: userUUID,
           //email: formData.email,
@@ -87,7 +87,7 @@ export class UserListService {
   ): Promise<{ success: boolean; user: PROFILE }> {
     const userUUID : string = uuidv4();
     const httpData: HTTP_REQ = {
-      url: `api/v1/annotator/update/${currentUser}`,
+      url: `api/v1/annotators/update/${currentUser}`,
       body: {
         id: userUUID,
         //email: formData.email,
@@ -111,7 +111,7 @@ export class UserListService {
     user: String
   ): Promise<{ success: boolean; user: String }> {
     const httpData: HTTP_REQ = {
-      url: `api/v1/annotator/delete/${user}`,
+      url: `api/v1/annotators/delete/${user}`,
     };
     const { success, error, data } = await this.apiService.delete(httpData);
     if (success) {

@@ -6,8 +6,8 @@ import { catchError, throwError } from "rxjs";
 @Injectable({
   providedIn: "root"
 })
-export class SubsetService {
-  PATH_OF_API: string = 'https://openvivqa-nlp-uit.herokuapp.com';
+export class AnnotatorService {
+  PATH_OF_API: string = 'https://openvivqa-nlp-uit.herokuapp.com/api/v1/annotators';
   requestHeader: HttpHeaders = new HttpHeaders({
     "No-Auth": "True"
   })
@@ -18,8 +18,8 @@ export class SubsetService {
     private httpclient: HttpClient
   ) { }
 
-  public getSubsetItems() {
-    return this.httpclient.get(this.PATH_OF_API + "/subsets/get", {
+  public getAnnotators() {
+    return this.httpclient.get(this.PATH_OF_API + "/get", {
       headers: this.requestHeader
     }).pipe(
       catchError(
@@ -60,8 +60,8 @@ export class SubsetService {
 
   }
 
-  public getSubsetItem(subsetId: number) {
-    return this.httpclient.get(this.PATH_OF_API + `/subsets/get/${subsetId}`, {
+  public getAnnotator(annotatorId: number) {
+    return this.httpclient.get(this.PATH_OF_API + `/get/${annotatorId}`, {
       headers: this.requestHeader
     }).pipe(
       catchError(

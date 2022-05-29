@@ -36,6 +36,9 @@ import { Navbar } from '@shared/components';
 import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annotators/components';
 import { SubsetsModule } from './admin/subsets/subsets.module';
 import { SubsetComponent } from './admin/subset/subset.component';
+import { AssignmentModule } from './admin/assignment/assignment.module';
+import { SubsetService } from './services/susbet.service';
+import { AnnotatorService } from './services/annotator.service';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,8 @@ import { SubsetComponent } from './admin/subset/subset.component';
     MatProgressSpinnerModule,
     CoreModule,
     SharedModule,
-    SubsetsModule
+    SubsetsModule,
+    AssignmentModule
   ],
   providers: [
     AuthGuard,
@@ -86,7 +90,9 @@ import { SubsetComponent } from './admin/subset/subset.component';
       useClass: AuthInterceptor,
       multi: true
     },
-    LoginService
+    LoginService,
+    SubsetService,
+    AnnotatorService
   ],
   bootstrap: [AppComponent]
 })

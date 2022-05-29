@@ -1,0 +1,18 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.sidenav {
+    width: 20%;
+    height: 100%;
+    background-color: white;
+}
+
+.sidenav-content {
+    width: 80%;
+    height: 100%;
+    background-color: white;
+}

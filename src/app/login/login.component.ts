@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
 
 
   submit() {
-    console.log(this.form.value)
     this.loginService.login(this.form.value).subscribe(
       (response: any) => {
         this.loginService.isLoggedIn = true
