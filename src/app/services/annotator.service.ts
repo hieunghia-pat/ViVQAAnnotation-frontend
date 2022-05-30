@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { HttpHeaders } from "@angular/common/http";
 import { catchError, throwError } from "rxjs";
 
 @Injectable({
@@ -8,9 +7,6 @@ import { catchError, throwError } from "rxjs";
 })
 export class AnnotatorService {
   PATH_OF_API: string = 'https://openvivqa-nlp-uit.herokuapp.com/api/v1/annotators';
-  requestHeader: HttpHeaders = new HttpHeaders({
-    "No-Auth": "True"
-  })
   errorMessage: string = "";
   errorStatus: number = 200;
 
@@ -19,9 +15,7 @@ export class AnnotatorService {
   ) { }
 
   public getAnnotators() {
-    return this.httpclient.get(this.PATH_OF_API + "/get", {
-      headers: this.requestHeader
-    }).pipe(
+    return this.httpclient.get(this.PATH_OF_API + "/get").pipe(
       catchError(
         (error: HttpErrorResponse) => {
           switch (error.status) {
@@ -61,9 +55,7 @@ export class AnnotatorService {
   }
 
   public getAnnotator(annotatorId: number) {
-    return this.httpclient.get(this.PATH_OF_API + `/get/${annotatorId}`, {
-      headers: this.requestHeader
-    }).pipe(
+    return this.httpclient.get(this.PATH_OF_API + `/get/${annotatorId}`).pipe(
       catchError(
         (error: HttpErrorResponse) => {
           switch (error.status) {

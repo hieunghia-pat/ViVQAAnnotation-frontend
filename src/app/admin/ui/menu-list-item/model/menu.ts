@@ -3,7 +3,7 @@ import { NavItem } from './nav-item';
 export let menu: NavItem[] = [
   {
     displayName: 'Annotators',
-    iconName: 'person',
+    iconName: 'people',
     route: '/admin/annotators'
   },
   {
