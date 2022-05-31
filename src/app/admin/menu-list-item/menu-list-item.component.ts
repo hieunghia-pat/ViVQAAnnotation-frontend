@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { NavItem } from './model/nav-item';
 import { Router } from '@angular/router';
 import { NavService } from 'src/app/services/nav.service';
@@ -23,7 +23,10 @@ export class MenuListItemComponent implements OnInit {
 
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: NavItem = {displayName : "", iconName : ""};
-  @Input() depth: number  ;
+  @Input() depth: number;
+  
+  @Input() clicked: boolean = false;
+  @Output() clickedChange: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   constructor(public navService: NavService,
     public router: Router) {
@@ -38,6 +41,8 @@ export class MenuListItemComponent implements OnInit {
     if (item.children && item.children.length) {
         this.expanded = !this.expanded;
     }
+
+    this.clickedChange.emit(false)
 }
 
   ngOnInit(): void {

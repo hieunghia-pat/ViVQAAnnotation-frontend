@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginService } from './services/login.service';
-import { MenuListItemComponent } from './admin/ui/menu-list-item/menu-list-item.component';
+import { MenuListItemComponent } from './admin/menu-list-item/menu-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from "@angular/material/input";
@@ -37,8 +37,10 @@ import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annota
 import { SubsetsModule } from './admin/subsets/subsets.module';
 import { SubsetComponent } from './admin/subset/subset.component';
 import { AssignmentModule } from './admin/assignment/assignment.module';
-import { SubsetService } from './services/susbet.service';
+import { SubsetService } from './services/subset.service';
 import { AnnotatorService } from './services/annotator.service';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { AnnotatorService } from './services/annotator.service';
     CoreModule,
     SharedModule,
     SubsetsModule,
-    AssignmentModule
+    AssignmentModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     AuthGuard,
@@ -90,9 +94,14 @@ import { AnnotatorService } from './services/annotator.service';
       useClass: AuthInterceptor,
       multi: true
     },
+    { 
+      provide: MAT_DATE_LOCALE, 
+      useValue: 'en-GB' 
+    },
     LoginService,
     SubsetService,
-    AnnotatorService
+    AnnotatorService,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

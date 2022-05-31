@@ -2,7 +2,7 @@
     <div class="sidenav">
         <mat-list>
             <app-annotators-assignment *ngFor="let annotator of annotators"  [user]="annotator" 
-                (selectedUsername)="setUsername($event)" ></app-annotators-assignment>
+                (selectedUser)="setUser($event)" ></app-annotators-assignment>
         </mat-list>
     </div>
 
@@ -10,6 +10,6 @@
     </mat-divider>
     
     <div class="sidenav-content">
-        <app-subsets-assignment [user]="selectedUser" [subsets]="subsets" ></app-subsets-assignment>
+        <app-subsets-assignment [user]="selectedUser" ></app-subsets-assignment>
     </div>
 </div>

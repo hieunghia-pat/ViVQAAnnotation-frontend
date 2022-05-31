@@ -11,15 +11,16 @@ export class AnnotatorsAssignmentComponent implements OnInit {
 
   @Input() user!: UserInterface;
 
-  @Output() selectedUsername: EventEmitter<UserInterface> = new EventEmitter<UserInterface>();
+  @Output() selectedUser: EventEmitter<UserInterface> = new EventEmitter<UserInterface>();
 
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
-  public selectUsername() {
-    this.selectedUsername.emit(this.user)
+  public selectUser() {
+    this.selectedUser.emit(this.user)
   }
 
 }

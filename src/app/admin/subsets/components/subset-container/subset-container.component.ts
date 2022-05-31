@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SubsetItem } from '../interfaces/subset-item.interface';
-import { SubsetService } from 'src/app/services/susbet.service';
+import { SubsetService } from 'src/app/services/subset.service';
 
 @Component({
   selector: 'app-subset-container',
@@ -121,7 +121,7 @@ export class SubsetContainerComponent implements OnInit {
   }
 
   public openSubset(subsetId: number) {
-    this.subsetService.getSubsetItem(subsetId).subscribe(
+    this.subsetService.getSubset(subsetId).subscribe(
       (response: any) => {
         console.log(response.subset)
       },

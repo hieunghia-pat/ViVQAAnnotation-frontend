@@ -2,17 +2,23 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    flex-direction: row;
 }
 
 .sidenav {
     width: 20%;
     height: 100%;
     background-color: white;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .sidenav-content {
     width: 80%;
     height: 100%;
     background-color: white;
+    display: block;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

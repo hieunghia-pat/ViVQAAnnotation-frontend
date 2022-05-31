@@ -9,12 +9,17 @@ import { AnnotatorsAssignmentComponent } from './annotators-assignment/annotator
 import { SubsetsAssignmentComponent } from './subsets-assignment/subsets-assignment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
-    AssignmentComponent, 
-    AnnotatorsAssignmentComponent, 
+    AssignmentComponent,
+    AnnotatorsAssignmentComponent,
     SubsetsAssignmentComponent
   ],
   imports: [
@@ -25,7 +30,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     BrowserModule,
     MatButtonModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatTableModule
   ]
 })
 export class AssignmentModule { }
