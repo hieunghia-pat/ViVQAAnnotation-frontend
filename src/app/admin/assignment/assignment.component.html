@@ -10,6 +10,6 @@
     </mat-divider>
     
     <div class="sidenav-content">
-        <app-subsets-assignment [user]="selectedUser" ></app-subsets-assignment>
+        <app-subsets-assignment *ngIf="selectedUser" [user]="selectedUser" ></app-subsets-assignment>
     </div>
 </div>

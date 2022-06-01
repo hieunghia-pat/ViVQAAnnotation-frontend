@@ -39,8 +39,6 @@ import { SubsetComponent } from './admin/subset/subset.component';
 import { AssignmentModule } from './admin/assignment/assignment.module';
 import { SubsetService } from './services/subset.service';
 import { AnnotatorService } from './services/annotator.service';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -83,9 +81,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     CoreModule,
     SharedModule,
     SubsetsModule,
-    AssignmentModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    AssignmentModule
   ],
   providers: [
     AuthGuard,
@@ -94,14 +90,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
       useClass: AuthInterceptor,
       multi: true
     },
-    { 
-      provide: MAT_DATE_LOCALE, 
-      useValue: 'en-GB' 
-    },
     LoginService,
     SubsetService,
-    AnnotatorService,
-    MatDatepickerModule
+    AnnotatorService
   ],
   bootstrap: [AppComponent]
 })

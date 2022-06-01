@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, throwError } from "rxjs";
+import { ResponseErrorInterface } from "../interfaces/error.interface";
+import { ErrorService } from "./error.service";
 
 @Injectable({
   providedIn: "root"
@@ -11,43 +13,19 @@ export class SubsetService {
   errorStatus: number = 200;
 
   constructor(
-    private httpclient: HttpClient
+    private httpclient: HttpClient,
+    private errorService: ErrorService
   ) { }
 
   public getSubsets() {
     return this.httpclient.get(this.PATH_OF_API + "/get").pipe(
       catchError(
         (error: HttpErrorResponse) => {
-          switch (error.status) {
-            case 0: {
-              this.errorMessage = "No response from server"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 401: {
-              this.errorMessage = "Failed to authenticated"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 403: {
-              this.errorMessage = "Forbidden authorization"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 500: {
-              this.errorMessage = "Internal server erroror"
-              this.errorStatus = error.status
-              break;
-            }
-
-            default:
-              this.errorMessage = "Unknown erroror"
-              this.errorStatus = error.status
-          }
-          return throwError(() => new Error(error.statusText));
+          let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
+          this.errorMessage = errorInterface.message
+          this.errorStatus = errorInterface.status
+          
+          return throwError(() => new Error(errorInterface.message))
         }
       )
     )
@@ -58,36 +36,11 @@ export class SubsetService {
     return this.httpclient.get(this.PATH_OF_API + `/get/annotator/${annotatorUsername}`).pipe(
       catchError(
         (error: HttpErrorResponse) => {
-          switch (error.status) {
-            case 0: {
-              this.errorMessage = "No response from server"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 401: {
-              this.errorMessage = "Failed to authenticated"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 403: {
-              this.errorMessage = "Forbidden authorization"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 500: {
-              this.errorMessage = "Internal server erroror"
-              this.errorStatus = error.status
-              break;
-            }
-
-            default:
-              this.errorMessage = "Unknown erroror"
-              this.errorStatus = error.status
-          }
-          return throwError(() => new Error(error.statusText));
+          let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
+          this.errorMessage = errorInterface.message
+          this.errorStatus = errorInterface.status
+          
+          return throwError(() => new Error(errorInterface.message))
         }
       )
     )
@@ -97,36 +50,11 @@ export class SubsetService {
     return this.httpclient.get(this.PATH_OF_API + `/get/subset/${subsetId}`).pipe(
       catchError(
         (error: HttpErrorResponse) => {
-          switch (error.status) {
-            case 0: {
-              this.errorMessage = "No response from server"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 401: {
-              this.errorMessage = "Failed to authenticated"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 403: {
-              this.errorMessage = "Forbidden authorization"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 500: {
-              this.errorMessage = "Internal server erroror"
-              this.errorStatus = error.status
-              break;
-            }
-
-            default:
-              this.errorMessage = "Unknown erroror"
-              this.errorStatus = error.status
-          }
-          return throwError(() => new Error(error.statusText));
+          let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
+          this.errorMessage = errorInterface.message
+          this.errorStatus = errorInterface.status
+          
+          return throwError(() => new Error(errorInterface.message))
         }
       )
     )

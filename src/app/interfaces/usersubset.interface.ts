@@ -2,7 +2,7 @@ export interface UserSubsetInterface {
     userId: string,
     subsetId: number,
     assigned: boolean,
-    assignDate: string,
+    assignedDate: string,
     finishDate: string,
-    isValidation: boolean
+    validation: boolean
 }

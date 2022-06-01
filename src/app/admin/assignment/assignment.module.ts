@@ -14,7 +14,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,18 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatTableModule
+    MatTableModule,
+    MatMomentDateModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
+  providers: [
+    { 
+      provide: MAT_DATE_LOCALE, 
+      useValue: 'en-GB' 
+    }
   ]
 })
 export class AssignmentModule { }
