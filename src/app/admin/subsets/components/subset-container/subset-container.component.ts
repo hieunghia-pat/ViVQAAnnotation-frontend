@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SubsetItem } from '../interfaces/subset-item.interface';
 import { SubsetService } from 'src/app/services/subset.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-subset-container',
@@ -11,124 +13,43 @@ export class SubsetContainerComponent implements OnInit {
 
   subsetItems!: SubsetItem[];
 
-  constructor(
-    private subsetService: SubsetService
-  ) {
-    this.subsetItems = [
-      {
-        subsetId: 1,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 2,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 3,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
+  public fetchingSubsets: boolean = false;
 
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },{
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-      {
-        subsetId: 4,
-        totalImages: 10,
-        totalAnnotations: 1,
-        totalAnnotators: 20,
-        totalCompleted: 0
-      },
-    ]
+  constructor(
+    private subsetService: SubsetService,
+    private snackBar: MatSnackBar
+  ) {
+  }
+
+  public toggleFetchingSubsets(): void {
+    this.fetchingSubsets = !this.fetchingSubsets
   }
 
   ngOnInit(): void {
-    // this.subsetService.getSubsetItems().subscribe(
-    //   (response: any) => {
-    //     console.log(response.subsets)
-    //   },
-    //   (error: Error) => {
-    //     console.log(error.message)
-    //   }
-    // )
+    this.toggleFetchingSubsets()
+    this.subsetService.getSubsets().subscribe({
+      next: (response: any) => {
+        this.toggleFetchingSubsets()
+        this.subsetItems = response
+      },
+      error: (error: HttpErrorResponse) => {
+        this.toggleFetchingSubsets()
+        if (error.status != 200) {
+          this.snackBar.open(error.message)
+        }
+      }
+    })
   }
 
   public openSubset(subsetId: number) {
-    this.subsetService.getSubset(subsetId).subscribe(
-      (response: any) => {
+    this.subsetService.getSubset(subsetId).subscribe({
+      next: (response: any) => {
         console.log(response.subset)
       },
-      (error: Error) => {
+      error: (error: Error) => {
         console.log(error.message)
       }
-    )
+    })
   }
 
 }

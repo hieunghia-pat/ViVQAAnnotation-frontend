@@ -25,7 +25,7 @@ export class SubsetItemComponent implements OnInit {
       ["admin/subsets/get"], 
       {
         queryParams: {
-          id: this.data.subsetId
+          id: this.data.id
         }
       })
   }

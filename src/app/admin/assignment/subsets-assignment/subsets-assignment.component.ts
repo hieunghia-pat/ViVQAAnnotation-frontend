@@ -6,6 +6,7 @@ import { SubsetService } from 'src/app/services/subset.service';
 import { AssignmentInterface } from 'src/app/interfaces/assignment.interface';
 import * as moment from 'moment'
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { NIL } from 'uuid';
 
 @Component({
   selector: 'app-subsets-assignment',
@@ -15,8 +16,9 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 export class SubsetsAssignmentComponent implements OnInit, OnChanges {
 
   @Input() user!: UserInterface;
+  
+  public fetchingTable: boolean = false
 
-  private userSubsetInterfaces!: UserSubsetInterface[];
   public assignments!: AssignmentInterface[];
 
   public columnsToDisplay: string[] = ["subsetId", "assigned", "validation", "assignedDate", "finishDate", "update"];
@@ -31,13 +33,34 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.toggleFetchingTable()
     this.subsetService.getSubsetByAnnotator(this.user.username).subscribe({
       next: (response: any) => {
         this.assignments = []
-        this.userSubsetInterfaces = response
-        this.userSubsetInterfaces.forEach((userSubsetInterface: UserSubsetInterface) => {
+        let userSubsetInterfaces = response
+        userSubsetInterfaces.forEach((userSubsetInterface: UserSubsetInterface) => {
           this.assignments.push(this.assignmentService.userSubsetToAssignment(userSubsetInterface))
         })
+        this.toggleFetchingTable()
+      },
+      error: (error: Error) => {
+        console.log(error.message)
+      }
+    })
+  }
+
+  private toggleFetchingTable(): void {
+    this.fetchingTable = !this.fetchingTable
+  }
+
+  private refreshSubsets(index: number): void {
+    this.toggleFetchingTable()
+    this.subsetService.getSubsetByAnnotator(this.user.username).subscribe({
+      next: (response: any) => {
+        console.log(response)
+        let userSubsetInterfaces: UserSubsetInterface[] = response
+        this.assignments[index] = this.assignmentService.userSubsetToAssignment(userSubsetInterfaces[index])
+        this.toggleFetchingTable()
       },
       error: (error: Error) => {
         console.log(error.message)
@@ -50,9 +73,15 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
   }
 
   public updateAssignment(index: number): void {
-    console.log(this.userSubsetInterfaces[index])
-    if (this.userSubsetInterfaces[index].assigned)
-      this.assignmentService.updateAssignment(this.userSubsetInterfaces[index]).subscribe({
+    let assignment: UserSubsetInterface = this.assignmentService.assignmentToUserSubset(this.assignments[index])
+    console.log(assignment)
+    
+    if (assignment.id == NIL && assignment.assigned == false) // nothing to do
+      return
+    
+    if (assignment.id == NIL && assignment.assigned) { // add new assignment
+      console.log("add new assignment")
+      this.assignmentService.addAssignment(assignment).subscribe({
         next: (response: HttpResponse<string>) => {
           console.log(response.body?.toString())
         },
@@ -60,8 +89,12 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
           console.log(error.message)
         }
       })
-    else
-      this.assignmentService.deleteAssignment(this.userSubsetInterfaces[index]).subscribe({
+      this.refreshSubsets(index)
+      return
+    }
+
+    if (assignment.id != NIL && !assignment.assigned) { // delete available assignment
+      this.assignmentService.deleteAssignment(assignment).subscribe({
         next: (response: HttpResponse<string>) => {
           console.log(response.body?.toString())
         },
@@ -69,37 +102,45 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
           console.log(error.message)
         }
       })
+      this.refreshSubsets(index)
+      return
+    }
+
+    // else update available assignment
+    this.assignmentService.updateAssignment(assignment).subscribe({
+      next: (response: HttpResponse<string>) => {
+        console.log(response.body?.toString())
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error.message)
+      }
+    })
+    this.refreshSubsets(index)
   }
 
   public onAssignedChanged(index: number, value: boolean): void {
-    this.userSubsetInterfaces[index].assigned = value
     this.assignments[index].assigned = value
   }
 
   public onAssignedDateChanged(index: number, date: string | null): void {
     if (date) {
-      this.userSubsetInterfaces[index].assignedDate = date;
       this.assignments[index].assignedDate = this.getDate(date)
     }
     else {
-      this.userSubsetInterfaces[index].assignedDate = "";
       this.assignments[index].assignedDate = this.getDate("")
     }
   }
 
   public onFinishDateChanged(index: number, date: string | null): void {
     if (date) {
-      this.userSubsetInterfaces[index].finishDate = date
       this.assignments[index].finishDate = this.getDate(date)
     }
     else {
-      this.userSubsetInterfaces[index].finishDate = ""
       this.assignments[index].finishDate = this.getDate("")
     }
   }
 
   public onValidationChanged(index: number, validation: boolean) {
-    this.userSubsetInterfaces[index].validation = validation
     this.assignments[index].validation = validation
   }
 }

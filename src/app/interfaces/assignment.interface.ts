@@ -1,6 +1,7 @@
 import { Moment } from "moment";
 
 export interface AssignmentInterface {
+    id: string,
     userId: string,
     subsetId: number,
     assigned: boolean,

@@ -1,4 +1,5 @@
 export interface UserSubsetInterface {
+    id: string,
     userId: string,
     subsetId: number,
     assigned: boolean,

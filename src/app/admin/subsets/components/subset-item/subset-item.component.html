@@ -1,22 +1,13 @@
-<mat-card>
-    <mat-card-title-group>
-        <mat-card-title>
-            <div class="div-background" ></div>
-            <div [align]="'center'"><a (click)="onSubsetClick()">Subset {{data.subsetId}}</a></div>
-        </mat-card-title>
-        <mat-card-subtitle>
-            <div [align]="'center'">
-                <mat-icon>image</mat-icon>
-                <span> {{data.totalImages}} </span>
-            </div>
-            <div [align]="'center'">
-                <mat-icon>person</mat-icon>
-                <span> {{data.totalAnnotators}} </span>
-            </div>
-            <div [align]="'center'">
-                <mat-icon>question_answer</mat-icon>
-                <span> {{data.totalAnnotations}} </span>
-            </div>
-        </mat-card-subtitle>
-    </mat-card-title-group>
-</mat-card>
+<button class="container" (dblclick)="onSubsetClick()" >
+    <svg focusable="false" viewBox="0 0 24 24" height="24px" width="24px" fill="#5f6368" class="a-s-fa-Ha-pa">
+        <g>
+            <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z">
+
+            </path>
+            <path d="M0 0h24v24H0z" fill="none">
+
+            </path>
+        </g>
+    </svg>
+    <div class="folder-name">Subset {{data.id}}</div>
+</button>

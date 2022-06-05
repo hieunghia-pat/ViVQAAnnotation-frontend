@@ -23,17 +23,19 @@ export class AssignmentService {
 
   public assignmentToUserSubset(assignment: AssignmentInterface): UserSubsetInterface {
     return {
+      id: assignment.id,
       userId: assignment.userId,
       subsetId: assignment.subsetId,
       assigned: assignment.assigned,
-      assignedDate: assignment.assignedDate.toString(),
-      finishDate: assignment.finishDate.toString(),
+      assignedDate: assignment.assignedDate.format("DD/MM/YYYY").toString(),
+      finishDate: assignment.finishDate.format("DD/MM/YYYY").toString(),
       validation: assignment.validation
     }
   }
 
   public userSubsetToAssignment(userSubset: UserSubsetInterface): AssignmentInterface {
     return {
+      id: userSubset.id,
       userId: userSubset.userId,
       subsetId: userSubset.subsetId,
       assigned: userSubset.assigned,
@@ -43,8 +45,22 @@ export class AssignmentService {
     }
   }
 
+  public addAssignment(assignment: UserSubsetInterface): Observable<any> {
+    return this.httpClient.post(this.PATH_OF_API + "/assignment/add", assignment).pipe(
+      catchError(
+        (error: HttpErrorResponse) => {
+          let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
+          this.errorMessage = errorInterface.message
+          this.errorStatus = errorInterface.status
+          
+          return throwError(() => new Error(errorInterface.message))
+        }
+      )
+    )
+  }
+
   public updateAssignment(assignment: UserSubsetInterface): Observable<any> {
-    return this.httpClient.post(this.PATH_OF_API + "/assign/update", assignment).pipe(
+    return this.httpClient.post(this.PATH_OF_API + `/assignment/update/${assignment.id}`, assignment).pipe(
       catchError(
         (error: HttpErrorResponse) => {
           let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
@@ -58,7 +74,7 @@ export class AssignmentService {
   }
 
   public deleteAssignment(assignment: UserSubsetInterface): Observable<any> {
-    return this.httpClient.post(this.PATH_OF_API + "/assign/delete", assignment).pipe(
+    return this.httpClient.delete(this.PATH_OF_API + `/assignment/delete/${assignment.id}`).pipe(
       catchError(
         (error: HttpErrorResponse) => {
           let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
@@ -70,6 +86,5 @@ export class AssignmentService {
       )
     )
   }
-
   
 }

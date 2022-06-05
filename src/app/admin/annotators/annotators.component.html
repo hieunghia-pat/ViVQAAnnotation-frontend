@@ -1,25 +1,13 @@
-<div class="add-button-wrapper">
-    <button
-      mat-fab
-      matTooltip="Create New User"
-      color="primary"
-      (click)="createNewUser()"
-    >
-      <mat-icon>add</mat-icon>
+<div class="loading-container" *ngIf="processingAnnotator">
+    <mat-progress-spinner class="loading" mode="indeterminate" ></mat-progress-spinner>
+</div>
+
+<div class="container" *ngIf="!processingAnnotator">
+    <app-annotators-list (editEvent)="onEditAnnotator($event)" (deleteEvent)="deleteAnntotator($event)" 
+                            [annotators]="annotators"></app-annotators-list>
+    <button class="add-button" mat-fab color="primary" (click)="onAddAnnotator()">
+        <mat-icon>add</mat-icon>
     </button>
-  </div>
-  <ng-container *ngIf="userList && userList.length">
-    <ng-container *ngIf="userList.length > 0; else noItemTemplate">
-      <app-annotators-table
-        [userList]="userList"
-        (update)="updateUser($event)"
-        (delete)="deleteUser($event)"
-      ></app-annotators-table>
-    </ng-container>
-    <ng-template #noItemTemplate>
-      <div class="alert alert-warning">
-        <p>User list have no item</p>
-      </div>
-    </ng-template>
-  </ng-container>
-  
+    <app-annotators-form *ngIf="formOpenned" (formOpenned)="closeForm($event)" [title]="processType" [buttonValue]="buttonType" 
+            [annotator]="tmpAnnotator" (updatedStatus)="fetchAnnotators()" ></app-annotators-form>
+</div>

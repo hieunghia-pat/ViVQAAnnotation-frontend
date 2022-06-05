@@ -20,42 +20,33 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { CommonModule } from '@angular/common';
-import { CoreModule } from '@core/core.module';
-import { SharedModule } from '@shared/shared.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
-import { AnnotatorListComponent } from './admin/annotators/annotators.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { LoadingSpinner } from '@shared/components';
-import { Navbar } from '@shared/components';
-import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annotators/components';
-import { SubsetsModule } from './admin/subsets/subsets.module';
-import { SubsetComponent } from './admin/subset/subset.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AssignmentModule } from './admin/assignment/assignment.module';
 import { SubsetService } from './services/subset.service';
 import { AnnotatorService } from './services/annotator.service';
+import { SnackBarService } from './services/snackbar.service';
+import { SubsetsModule } from './admin/subsets/subsets.module';
+import { MatTableModule } from '@angular/material/table';
+import { AnnotatorsModule } from './admin/annotators/annotators.module';
 
 @NgModule({
   declarations: [
-    AnnotatorListComponent,
     AppComponent,
     AdminComponent,
     LoginComponent,
     AnnotatorComponent,
     ForbiddenComponent,
     LogoutComponent,
-    AnnotatorsTable,
-    AnnotatorsForm,
-    AnnotatorsModal,
-    MenuListItemComponent,
-    LoadingSpinner,
-    Navbar,
-    SubsetComponent
+    MenuListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -72,16 +63,18 @@ import { AnnotatorService } from './services/annotator.service';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatProgressBarModule,
     CommonModule,
     MatDialogModule,
     MatMenuModule,
     MatSelectModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    CoreModule,
-    SharedModule,
+    MatSnackBarModule,
+    MatTableModule,
+    AssignmentModule,
     SubsetsModule,
-    AssignmentModule
+    AnnotatorsModule
   ],
   providers: [
     AuthGuard,
@@ -92,7 +85,8 @@ import { AnnotatorService } from './services/annotator.service';
     },
     LoginService,
     SubsetService,
-    AnnotatorService
+    AnnotatorService,
+    SnackBarService
   ],
   bootstrap: [AppComponent]
 })

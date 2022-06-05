@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { catchError, throwError } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
+import { ErrorService } from "./error.service";
+import { AnnotatorInterface } from "../interfaces/annotator.interface";
 
 @Injectable({
   providedIn: "root"
@@ -15,82 +17,23 @@ export class AnnotatorService {
   ) { }
 
   public getAnnotators() {
-    return this.httpclient.get(this.PATH_OF_API + "/get").pipe(
-      catchError(
-        (error: HttpErrorResponse) => {
-          switch (error.status) {
-            case 0: {
-              this.errorMessage = "No response from server"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 401: {
-              this.errorMessage = "Failed to authenticated"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 403: {
-              this.errorMessage = "Forbidden authorization"
-              this.errorStatus = error.status
-              break;
-            }
-
-            case 500: {
-              this.errorMessage = "Internal server erroror"
-              this.errorStatus = error.status
-              break;
-            }
-
-            default:
-              this.errorMessage = "Unknown erroror"
-              this.errorStatus = error.status
-          }
-          return throwError(() => new Error(error.statusText));
-        }
-      )
-    )
-
+    return this.httpclient.get(this.PATH_OF_API + "/get")
   }
 
-  public getAnnotator(annotatorId: number) {
-    return this.httpclient.get(this.PATH_OF_API + `/get/${annotatorId}`).pipe(
-      catchError(
-        (error: HttpErrorResponse) => {
-          switch (error.status) {
-            case 0: {
-              this.errorMessage = "No response from server"
-              this.errorStatus = error.status
-              break;
-            }
+  public getAnnotator(annotatorName: string) {
+    return this.httpclient.get(this.PATH_OF_API + `/get/${annotatorName}`)
+  }
 
-            case 401: {
-              this.errorMessage = "Failed to authenticated"
-              this.errorStatus = error.status
-              break;
-            }
+  public addAnnotator(annotator: AnnotatorInterface): Observable<any> {
+    return this.httpclient.post(this.PATH_OF_API + "/add", annotator)
+  }
 
-            case 403: {
-              this.errorMessage = "Forbidden authorization"
-              this.errorStatus = error.status
-              break;
-            }
+  public updateAnnotator(annotator: AnnotatorInterface): Observable<any> {
+    return this.httpclient.put(this.PATH_OF_API + `/update/${annotator.username}`, annotator)
+  }
 
-            case 500: {
-              this.errorMessage = "Internal server erroror"
-              this.errorStatus = error.status
-              break;
-            }
-
-            default:
-              this.errorMessage = "Unknown erroror"
-              this.errorStatus = error.status
-          }
-          return throwError(() => new Error(error.statusText));
-        }
-      )
-    )
+  public deleteAnnotator(annotatorName: string): Observable<any> {
+    return this.httpclient.delete(this.PATH_OF_API + `/delete/${annotatorName}`)
   }
 
 }

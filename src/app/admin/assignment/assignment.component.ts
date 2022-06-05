@@ -17,8 +17,8 @@ export class AssignmentComponent implements OnInit {
 
   constructor(
     private annotatorService: AnnotatorService
-  ) { 
-
+  ) {
+    
   }
 
   ngOnInit(): void {
