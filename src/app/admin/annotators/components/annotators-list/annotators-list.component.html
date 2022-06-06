@@ -1,0 +1,44 @@
+<table mat-table [dataSource]="annotators">
+    
+    <ng-container matColumnDef="#">
+        <th class="header name" mat-header-cell *matHeaderCellDef> # </th>
+        <td class="cell name" mat-cell *matCellDef="let idx = index" > {{idx + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+        <th class="header name" mat-header-cell *matHeaderCellDef> Username </th>
+        <td class="cell name" mat-cell *matCellDef="let annotator" > {{annotator.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstname">
+        <th class="header name" mat-header-cell *matHeaderCellDef> First Name </th>
+        <td class="cell name" mat-cell *matCellDef="let annotator" > {{annotator.firstname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastname">
+        <th class="header name" mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td class="cell name" mat-cell *matCellDef="let annotator" > {{annotator.lastname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <th class="header button" mat-header-cell *matHeaderCellDef></th>
+        <td class="cell button" mat-cell *matCellDef="let idx=index">
+            <button mat-icon-button matToolTip="Edit" color="primary" (click)="onEdit(idx)">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th class="header button" mat-header-cell *matHeaderCellDef></th>
+        <td class="cell button" mat-cell *matCellDef="let idx=index" (click)="onDelete(idx)">
+            <button mat-icon-button matTooltip="Delete" color="warn" (click)="onDelete(idx)" >
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay" ></tr>
+    <tr mat-row *matRowDef="let annotator; columns: columnsToDisplay"></tr>
+
+</table>

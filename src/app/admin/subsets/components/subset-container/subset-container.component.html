@@ -1,0 +1,9 @@
+<div class="loading-container" *ngIf="fetchingSubsets">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<mat-grid-list cols="7" rowHeight="77px" *ngIf="!fetchingSubsets">
+    <mat-grid-tile *ngFor="let subsetItem of subsetItems" >
+        <app-subset-item class="item-container" [data]="subsetItem"></app-subset-item>
+    </mat-grid-tile>
+</mat-grid-list>

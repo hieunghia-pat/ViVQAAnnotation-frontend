@@ -1,0 +1,65 @@
+<div class="loading" >
+  <mat-progress-bar *ngIf="fetchingTable" mode="query"></mat-progress-bar>
+</div>
+
+<table mat-table [dataSource]="assignments">
+
+  <ng-container matColumnDef="subsetId">
+    <th class="header checkbox" mat-header-cell *matHeaderCellDef>Subset ID</th>
+    <td class="cell checkbox" mat-cell *matCellDef="let assignment"> {{assignment.subsetId}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="assigned">
+    <th class="header checkbox" mat-header-cell *matHeaderCellDef>Assigned</th>
+    <td class="cell checkbox" mat-cell *matCellDef="let assignment; let idx = index">
+      <mat-checkbox #assignedCheckbox [checked]="assignment.assigned"
+        (change)="onAssignedChanged(idx, assignedCheckbox.checked)"></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="assignedDate">
+    <th class="header date" mat-header-cell *matHeaderCellDef>Assigned Date</th>
+    <td class="cell date" mat-cell *matCellDef="let assignment; let idx = index">
+      <mat-form-field appearance="outline">
+        <mat-label>Assignment date</mat-label>
+        <input #assignDateInput matInput [matDatepicker]="picker" [value]="assignment.assignedDate"
+          (dateInput)="onAssignedDateChanged(idx, assignDateInput.value)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="finishDate">
+    <th class="header date" mat-header-cell *matHeaderCellDef>Finish Date</th>
+    <td class="cell date" mat-cell *matCellDef="let assignment; let idx = index">
+      <mat-form-field appearance="outline">
+        <mat-label>Finish date</mat-label>
+        <input #finishDateInput matInput [matDatepicker]="picker" [value]="assignment.finishDate"
+          (dateInput)="onFinishDateChanged(idx, finishDateInput.value)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="validation">
+    <th class="header checkbox" mat-header-cell *matHeaderCellDef>Used to validation</th>
+    <td class="cell checkbox" mat-cell *matCellDef="let assignment; let idx = index">
+      <mat-checkbox #validationCheckbox [checked]="assignment.validation"
+        (change)="onValidationChanged(idx, validationCheckbox.checked)"></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="update">
+    <th class="header button" mat-header-cell *matHeaderCellDef></th>
+    <td class="cell button" mat-cell *matCellDef="let row; let idx = index">
+      <button mat-stroked-button (click)="updateAssignment(idx)">Update</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+</table>

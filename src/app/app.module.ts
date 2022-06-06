@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LoginService } from './services/login.service';
-import { MenuListItemComponent } from './admin/ui/menu-list-item/menu-list-item.component';
+import { MenuListItemComponent } from './admin/menu-list-item/menu-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from "@angular/material/input";
@@ -20,17 +20,12 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { CommonModule } from '@angular/common';
-import { CoreModule } from '@core/core.module';
-import { SharedModule } from '@shared/shared.module';
-// import { MatProgressSpinnerModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AnnotatorComponent } from './annotator/annotator.component'
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LogoutComponent } from './logout/logout.component';
-// import { SubsetItemComponent } from './admin/subsets/subset-item/subset-item.component';
-// import { SubsetsComponent } from './admin/subsets/subsets.component';
-import { AnnotatorListComponent } from './admin/annotators/annotators.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -48,9 +43,19 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 //import { FabricjsEditorComponent } from './annotator/customtool-bar/angular-editor-fabric-js/src/public-api';
 import { FormFactoryModule } from './annotator/form-factory/form-factory.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AssignmentModule } from './admin/assignment/assignment.module';
+import { SubsetService } from './services/subset.service';
+import { AnnotatorService } from './services/annotator.service';
+import { SnackBarService } from './services/snackbar.service';
+import { SubsetsModule } from './admin/subsets/subsets.module';
+import { MatTableModule } from '@angular/material/table';
+import { AnnotatorsModule } from './admin/annotators/annotators.module';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { SubsetModule } from './admin/subset/subset.module';
+
 @NgModule({
   declarations: [
-    AnnotatorListComponent,
     AppComponent,
     AdminComponent,
     LoginComponent,
@@ -69,6 +74,7 @@ import { FormFactoryModule } from './annotator/form-factory/form-factory.module'
     // FormFactoryCoreComponent,
     FormExampleComponent
     
+    MenuListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +91,7 @@ import { FormFactoryModule } from './annotator/form-factory/form-factory.module'
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatProgressBarModule,
     CommonModule,
     MatDialogModule,
     MatMenuModule,
@@ -99,6 +106,13 @@ import { FormFactoryModule } from './annotator/form-factory/form-factory.module'
     FormFactoryModule.forRoot({
       fields: [],
     })
+    MatSnackBarModule,
+    MatTableModule,
+    AssignmentModule,
+    SubsetModule,
+    SubsetsModule,
+    AnnotatorsModule,
+    MatGridListModule
   ],
   providers: [
     AuthGuard,
@@ -107,7 +121,10 @@ import { FormFactoryModule } from './annotator/form-factory/form-factory.module'
       useClass: AuthInterceptor,
       multi: true
     },
-    LoginService
+    LoginService,
+    SubsetService,
+    AnnotatorService,
+    SnackBarService
   ],
   bootstrap: [AppComponent]
 })

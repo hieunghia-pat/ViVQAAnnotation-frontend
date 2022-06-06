@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="image">
+        <img [src]="image" [alt]="'image'"/>
+    </div>
+    <div class="annotations-container">
+        <div class="annotation-items" *ngFor="let annotationInterface of annotationInterfaces">
+            <app-annotation-item class="annotations-item"
+                [annotationInterface]="annotationInterface"></app-annotation-item>
+        </div>
+    </div>
+</div>

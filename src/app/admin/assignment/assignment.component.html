@@ -1,0 +1,22 @@
+<div class="container" *ngIf="(annotators != undefined); else loading">
+    <div class="sidenav">
+        <mat-list>
+            <app-annotators-assignment *ngFor="let annotator of annotators"  [user]="annotator" 
+                (selectedUser)="setUser($event)" ></app-annotators-assignment>
+        </mat-list>
+    </div>
+
+    <mat-divider vertical="true">
+    </mat-divider>
+    
+    <div class="sidenav-content">
+        <app-subsets-assignment *ngIf="selectedUser" [user]="selectedUser" ></app-subsets-assignment>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="loading">
+        <mat-progress-spinner mode="indeterminate" >
+        </mat-progress-spinner>
+    </div>
+</ng-template>

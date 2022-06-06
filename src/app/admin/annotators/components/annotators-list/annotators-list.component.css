@@ -1,0 +1,24 @@
+table {
+    width: 70%;
+    margin-left: 15%;
+    box-shadow: 2px 2px 2px grey;
+    z-index: 2;
+}
+
+.header {
+    font-weight: 500;
+    align-content: center;
+    position: sticky;
+}
+
+.cell {
+    align-items: center;
+}
+
+.name {
+    width: 20%;
+}
+
+.button {
+    width: 5%;
+}

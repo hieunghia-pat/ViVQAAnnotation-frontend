@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="background"></div>
+  
+  <mat-card class="form">
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-content>  
+      <form class="input-container" [formGroup]="annotationForm">
+        <mat-form-field class="input" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input type="text" matInput formControlName="username">
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="outline">
+          <mat-label>First name</mat-label>
+          <input type="text" matInput formControlName="firstname">
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="outline">
+          <mat-label>Last name</mat-label>
+          <input type="text" matInput formControlName="lastname">
+        </mat-form-field>
+      </form>
+      <div class="button-container">
+        <div class="button">
+          <button mat-flat-button color="primary" (click)="onSubmitForm()">{{buttonValue}}</button>
+        </div>
+        <div class="button">
+          <button mat-flat-button color="primary" (click)="onCloseForm()">Cancel</button>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar mode="indeterminate" *ngIf="updatingAnnotator"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>

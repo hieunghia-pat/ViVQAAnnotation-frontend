@@ -1,15 +1,25 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-    height: 100%;
-  }
-  
-  .mat-sidenav {
-    width: 220px;
-  }
-  
-  button.menu-button {
-    color: inherit;
-    background: transparent;
-    cursor: pointer;
-    border: none;
-    outline: none;
-  }
+mat-toolbar {
+  height: 7%;
+}
+
+mat-sidenav-container {
+  height: 93%;
+}
+
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+}
+
+.mat-sidenav {
+  width: 13%;
+  /* position: sticky; */
+}
+
+button.menu-button {
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}

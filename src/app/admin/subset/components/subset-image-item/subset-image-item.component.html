@@ -1,0 +1,11 @@
+<div class="container disabled-selection" (dblclick)="onOpenImage()">
+    <div class="image">
+        <img [src]="image" [alt]="imageInterface.filename" />
+    </div>
+    <div class="image-name">
+        <mat-icon class="icon">photo</mat-icon>
+        <div>
+            {{imageInterface.filename}}
+        </div>
+    </div>
+</div>
