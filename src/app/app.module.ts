@@ -37,6 +37,10 @@ import { SnackBarService } from './services/snackbar.service';
 import { SubsetsModule } from './admin/subsets/subsets.module';
 import { MatTableModule } from '@angular/material/table';
 import { AnnotatorsModule } from './admin/annotators/annotators.module';
+import { SubsetComponent } from './admin/subset/subset.component';
+import { SubsetImageItemComponent } from './admin/subset/components/subset-image-item/subset-image-item.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { AnnotationItemComponent } from './admin/subset/components/annotation-item/annotation-item.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,10 @@ import { AnnotatorsModule } from './admin/annotators/annotators.module';
     AnnotatorComponent,
     ForbiddenComponent,
     LogoutComponent,
-    MenuListItemComponent
+    MenuListItemComponent,
+    SubsetComponent,
+    SubsetImageItemComponent,
+    AnnotationItemComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +81,8 @@ import { AnnotatorsModule } from './admin/annotators/annotators.module';
     MatTableModule,
     AssignmentModule,
     SubsetsModule,
-    AnnotatorsModule
+    AnnotatorsModule,
+    MatGridListModule
   ],
   providers: [
     AuthGuard,

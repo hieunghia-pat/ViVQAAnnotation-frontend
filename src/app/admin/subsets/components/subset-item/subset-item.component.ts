@@ -22,7 +22,7 @@ export class SubsetItemComponent implements OnInit {
 
   public onSubsetClick() {
     this.router.navigate(
-      ["admin/subsets/get"], 
+      ["admin/subsets/subset"], 
       {
         queryParams: {
           id: this.data.id

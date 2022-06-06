@@ -1,6 +1,7 @@
 export interface AnnotationInterface {
     id: number,
-    image_id: number,
+    imageId: number,
+    userId: string,
     question: string,
     answer: string,
     question_type: number,

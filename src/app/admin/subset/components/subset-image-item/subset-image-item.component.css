@@ -1,0 +1,42 @@
+.container {
+    width: 100%;
+    height: 90%;
+    border-radius: 5px;
+    border: 1px solid #dedede;
+    z-index: 3;
+}
+
+.container:hover {
+    cursor: pointer;
+    background-color: #f2f2f2;
+    box-shadow: 2px 2px 3px gray;
+}
+
+img {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.image {
+    width: 100%;
+    height: 80%;
+    z-index: 2;
+}
+
+.image-name {
+    width: 100%;
+    height: 20%;
+    color: grey;
+    font-weight: bold;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    z-index: 2;
+}
+
+.icon {
+    margin: 0.5rem;
+    color: blueviolet
+}

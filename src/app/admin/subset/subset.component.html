@@ -1,0 +1,9 @@
+<div class="loading-container" *ngIf="fetchingImage">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<mat-grid-list class="image-container" *ngIf="!fetchingImage" cols="8" rowHeight="200px">
+    <mat-grid-tile *ngFor="let imageInterface of imageInterfaces">
+        <app-subset-image-item class="image-item" [imageInterface]="imageInterface"></app-subset-image-item>
+    </mat-grid-tile>
+</mat-grid-list>

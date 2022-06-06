@@ -5,5 +5,6 @@ export interface ImageInterface {
     subset_id: number,
     to_delete: boolean,
     user_id: string,
-    annotationIds: number[]
+    annotationIds: number[],
+    image: string
 }
