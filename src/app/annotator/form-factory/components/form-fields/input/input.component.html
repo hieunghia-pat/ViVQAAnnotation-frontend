@@ -1,0 +1,23 @@
+
+<div
+  class="field flex flex-column w-full mb-2"
+  [ngClass]="options.containerClass"
+>
+  <!-- <label *ngIf="options.label" class="mb-2">{{ options.label }}</label>
+  <input
+    [type]="options.type"
+    [placeholder]="options.placeholder ?? ''"
+    [formControlName]="options.formControlName"
+    (input)="onChange($event)"
+    pInputText
+  /> -->
+  <form>
+    <div class="mb-3">
+      <label *ngIf="options.label" class="form-label">{{ options.label }}</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" (input)="onChange($event)"pInputText>
+      <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+    </div>
+  </form>
+</div>
+  <!-- <app-field-errors [errors]="errors"></app-field-errors> -->
+<!-- </div> -->

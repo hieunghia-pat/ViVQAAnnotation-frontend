@@ -37,7 +37,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoadingSpinner } from '@shared/components';
 import { Navbar } from '@shared/components';
 import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annotators/components';
-
+import { ImageSliderComponent } from './annotator/image-slider/image-slider.component';
+// import { InputComponent } from './annotator/form-factory/components/form-fields/input/input.component';
+import { FormFactoryComponent } from './annotator/form-factory/components/form-factory/form-factory.component';
+// import { FormFactoryCoreComponent } from './annotator/form-factory/components/form-factory-core/form-factory-core.component';
+//import { ColorPickerModule } from 'ngx-color-picker';
+import { FormExampleComponent } from './annotator/form-example/form-example.component';
+import {ButtonModule} from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+//import { FabricjsEditorComponent } from './annotator/customtool-bar/angular-editor-fabric-js/src/public-api';
+import { FormFactoryModule } from './annotator/form-factory/form-factory.module';
 @NgModule({
   declarations: [
     AnnotatorListComponent,
@@ -52,7 +62,13 @@ import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annota
     AnnotatorsModal,
     MenuListItemComponent,
     LoadingSpinner,
-    Navbar
+    Navbar,
+    ImageSliderComponent,
+    // InputComponent,
+    // FormFactoryComponent,
+    // FormFactoryCoreComponent,
+    FormExampleComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -76,7 +92,13 @@ import { AnnotatorsTable, AnnotatorsModal, AnnotatorsForm } from './admin/annota
     MatTooltipModule,
     MatProgressSpinnerModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    ButtonModule,
+    InputTextModule,
+    InputTextareaModule,
+    FormFactoryModule.forRoot({
+      fields: [],
+    })
   ],
   providers: [
     AuthGuard,

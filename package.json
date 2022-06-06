@@ -25,6 +25,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "ngx-cookie-service": "^13.0.0",
     "ngx-smart-modal": "^7.4.1",
+    "primeng": "^13.4.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "uuid": "^8.3.2",

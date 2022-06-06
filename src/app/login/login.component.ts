@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit {
         this.loginService.isLoggedIn = true
         this.userAuthService.setAccessToken(response.access_token)
         this.userAuthService.setRefreshToken(response.refresh_token)
+        let username :string = this.form.value.username;
+        this.userAuthService.setUsername(username);
         let role: string = response.role;
         this.userAuthService.setRole(role)
         if (role === "ROLE_ADMIN") {

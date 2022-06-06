@@ -24,8 +24,11 @@ export class ApiService {
         .get(`${this.apiUrl}/${httpData.url}`, httpOptions)
         .pipe(shareReplay())
         .toPromise();
+      console.log(result);
+      
       return { success: true, data: result, error: null };
-    } catch (error:any) {
+    } 
+    catch ( error) {
       return { success: false, data: null, error };
     }
   }
