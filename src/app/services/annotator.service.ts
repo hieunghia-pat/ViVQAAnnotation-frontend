@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { catchError, Observable, throwError } from "rxjs";
-import { ErrorService } from "./error.service";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 import { AnnotatorInterface } from "../interfaces/annotator.interface";
 
 @Injectable({
@@ -9,8 +8,6 @@ import { AnnotatorInterface } from "../interfaces/annotator.interface";
 })
 export class AnnotatorService {
   PATH_OF_API: string = 'https://openvivqa-nlp-uit.herokuapp.com/api/v1/annotators';
-  errorMessage: string = "";
-  errorStatus: number = 200;
 
   constructor(
     private httpclient: HttpClient
