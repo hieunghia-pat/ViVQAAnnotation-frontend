@@ -1,20 +1,21 @@
 import {
-    HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { UserAuthService } from '../services/user-auth.service';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private userAuthService: UserAuthService,
-    private router:Router) {}
+  
+  constructor(
+    private userAuthService: UserAuthService,
+    private router:Router
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -31,7 +32,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(req)
   }
-
 
   private addToken(request:HttpRequest<any>, token:string) {
       return request.clone(

@@ -1,5 +1,5 @@
-import { FieldTypeModel } from './../../core/models/field-type';
-import { DynamicField } from './../../core/models/dynamic-field';
+import { FieldTypeModel } from '../../core/models/field-type';
+import { DynamicField } from '../../core/models/dynamic-field';
 import {
   Component,
   Input,

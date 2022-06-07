@@ -12,13 +12,12 @@ import * as moment from 'moment';
 })
 export class AssignmentService {
 
-  PATH_OF_API: string = 'https://openvivqa-nlp-uit.herokuapp.com/api/v1/subsets';
+  PATH_OF_API: string = 'https://openvivqa-nlp-uit.herokuapp.com/api/v1/assignment';
   errorMessage: string = "";
   errorStatus: number = 200;
 
   constructor(
-    private httpClient: HttpClient,
-    private errorService: ErrorService
+    private httpClient: HttpClient
   ) { }
 
   public assignmentToUserSubset(assignment: AssignmentInterface): UserSubsetInterface {
@@ -46,45 +45,19 @@ export class AssignmentService {
   }
 
   public addAssignment(assignment: UserSubsetInterface): Observable<any> {
-    return this.httpClient.post(this.PATH_OF_API + "/assignment/add", assignment).pipe(
-      catchError(
-        (error: HttpErrorResponse) => {
-          let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
-          this.errorMessage = errorInterface.message
-          this.errorStatus = errorInterface.status
-          
-          return throwError(() => new Error(errorInterface.message))
-        }
-      )
-    )
+    return this.httpClient.post(this.PATH_OF_API + "/add", assignment)
   }
 
   public updateAssignment(assignment: UserSubsetInterface): Observable<any> {
-    return this.httpClient.post(this.PATH_OF_API + `/assignment/update/${assignment.id}`, assignment).pipe(
-      catchError(
-        (error: HttpErrorResponse) => {
-          let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
-          this.errorMessage = errorInterface.message
-          this.errorStatus = errorInterface.status
-          
-          return throwError(() => new Error(errorInterface.message))
-        }
-      )
-    )
+    return this.httpClient.post(this.PATH_OF_API + `/update/${assignment.id}`, assignment)
   }
 
   public deleteAssignment(assignment: UserSubsetInterface): Observable<any> {
-    return this.httpClient.delete(this.PATH_OF_API + `/assignment/delete/${assignment.id}`).pipe(
-      catchError(
-        (error: HttpErrorResponse) => {
-          let errorInterface: ResponseErrorInterface = this.errorService.handlerResponseError(error)
-          this.errorMessage = errorInterface.message
-          this.errorStatus = errorInterface.status
-          
-          return throwError(() => new Error(errorInterface.message))
-        }
-      )
-    )
+    return this.httpClient.delete(this.PATH_OF_API + `/delete/${assignment.id}`)
+  }
+
+  public getAssignmentByAnnotator(annotatorName: string): Observable<any> {
+    return this.httpClient.get(this.PATH_OF_API + `/get/${annotatorName}`)
   }
   
 }

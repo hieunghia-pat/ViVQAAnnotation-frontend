@@ -24,11 +24,13 @@ export class AssignmentComponent implements OnInit {
   ngOnInit(): void {
     this.annotatorService.getAnnotators().subscribe(
       (response: any) => {
-        this.annotators = response
-        this.setUser(this.annotators[0])
-      },
-      (error: Error) => {
-        console.error("Cannot fetch information of annotators from server")
+        if (response.status == 200) {
+          this.annotators = response.body
+          this.setUser(this.annotators[0])
+        }
+        else {
+          console.log(response.error)
+        }
       }
     )
   }

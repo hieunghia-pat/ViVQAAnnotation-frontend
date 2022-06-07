@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AnnotationInterface } from 'src/app/interfaces/annotation.interface';
 import { AnswerType } from 'src/app/interfaces/answer-type.interface';
-import { questionType } from 'src/app/interfaces/question-type.interface';
+import { QuestionType } from 'src/app/interfaces/question-type.interface';
 
 @Component({
   selector: 'app-annotation-item',
@@ -12,7 +12,7 @@ export class AnnotationItemComponent implements OnInit {
 
   @Input() annotationInterface!: AnnotationInterface
 
-  public questionTypes: questionType[] = [
+  public questionTypes: QuestionType[] = [
     {
       id: 0,
       name: "What"

@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { AnnotatorInterface } from 'src/app/interfaces/annotator.interface';
 import { AnnotatorService } from 'src/app/services/annotator.service';
 import { SnackBarService } from 'src/app/services/snackbar.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { NIL, v4 as uuidv4 } from 'uuid'
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -83,15 +82,11 @@ export class AnnotatorsFormComponent implements OnInit, OnChanges {
     this.annotatorService.addAnnotator(annotator).subscribe({
       next: (response: any) => {
         this.toggleUpdatingAnnotator()
-        this.updatedStatus.emit(true)
-      },
-      error: (error: HttpErrorResponse) => {
-        this.toggleUpdatingAnnotator()
-        if (error.status == 200) {
+        if (response.status == 200) {
           this.updatedStatus.emit(true)
         }
         else {
-          this.snackBarService.openSnackBar(error.message)
+          this.snackBarService.openSnackBar(response.error)
         }
       }
     })
@@ -102,15 +97,11 @@ export class AnnotatorsFormComponent implements OnInit, OnChanges {
     this.annotatorService.updateAnnotator(annotator).subscribe({
       next: (response: any) => {
         this.toggleUpdatingAnnotator()
-        this.updatedStatus.emit(true)
-      },
-      error: (error: HttpErrorResponse) => {
-        this.toggleUpdatingAnnotator()
-        if (error.status == 200) {
+        if (response.status == 200) {
           this.updatedStatus.emit(true)
         }
         else {
-          this.snackBarService.openSnackBar(error.message)
+          this.snackBarService.openSnackBar(response.error)
         }
       }
     })

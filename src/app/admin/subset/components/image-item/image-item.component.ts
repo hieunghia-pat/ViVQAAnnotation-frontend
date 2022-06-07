@@ -65,11 +65,11 @@ export class ImageItemComponent implements OnInit {
         // fetching image
         this.imageService.getImage(this.imageId).subscribe({
           next: (response: any) => {
-            if (response.error) {
+            if (response.status != 200) {
               console.log(response.error)
             }
             else {
-              this.image = this.imageService.stringToImage(response.image)
+              this.image = this.imageService.stringToImage(response.body.image)
             }
           }
         })

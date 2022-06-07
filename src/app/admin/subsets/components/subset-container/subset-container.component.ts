@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SubsetItem } from '../interfaces/subset-item.interface';
 import { SubsetService } from 'src/app/services/subset.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
+import { SnackBarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-subset-container',
@@ -17,7 +17,7 @@ export class SubsetContainerComponent implements OnInit {
 
   constructor(
     private subsetService: SubsetService,
-    private snackBar: MatSnackBar
+    private snackBarService: SnackBarService
   ) {
   }
 
@@ -30,24 +30,12 @@ export class SubsetContainerComponent implements OnInit {
     this.subsetService.getSubsets().subscribe({
       next: (response: any) => {
         this.toggleFetchingSubsets()
-        this.subsetItems = response
-      },
-      error: (error: HttpErrorResponse) => {
-        this.toggleFetchingSubsets()
-        if (error.status != 200) {
-          this.snackBar.open(error.message)
+        if (response.status == 200) {
+          this.subsetItems = response.body
         }
-      }
-    })
-  }
-
-  public openSubset(subsetId: number) {
-    this.subsetService.getSubset(subsetId).subscribe({
-      next: (response: any) => {
-        console.log(response.subset)
-      },
-      error: (error: Error) => {
-        console.log(error.message)
+        else {
+          this.snackBarService.openSnackBar(response.error)          
+        }
       }
     })
   }

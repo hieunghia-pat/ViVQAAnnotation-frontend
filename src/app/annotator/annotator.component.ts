@@ -1,96 +1,20 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-annotator',
-//   templateUrl: './annotator.component.html',
-//   styleUrls: ['./annotator.component.css']
-// })
-// export class AnnotatorComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
-
-import { ImageService } from '../services/image.service';
 import { Component, OnInit } from '@angular/core';
-
-import { HttpClient } from '@angular/common/http';
-
+import { menu } from './components/menu-item/model/menu';
+import { NavItem } from './components/menu-item/model/nav-item';
 
 @Component({
-
-  selector: 'annotator-root',
-
+  selector: 'app-annotator',
   templateUrl: './annotator.component.html',
-
   styleUrls: ['./annotator.component.css']
-
 })
-
 export class AnnotatorComponent implements OnInit {
-  title = 'CodeInfo';
+  
+  public opened: boolean = false
+  public menu: NavItem[] = menu
 
-  constructor(private _http: HttpClient, private imageservice : ImageService ) {
+  constructor() { }
+
+  ngOnInit(): void {
   }
-  imagesData!: any ;
-  current_id! : number;
-  binary_image!: any;
-  async ngOnInit() {
-    this.imagesData = this.imageservice.getListimages();
-    this.binary_image = await this.imageservice.getFistImage();
-    this.current_id = 0;
-    // console.log(this.binary_image)
-  }
-
-  NextImage() {
-
-    this.binary_image = this.imageservice.getNextImage(this.current_id);
-    this.current_id += 1;
-
-  }
-
-  PreviousImage() {
-
-    this.binary_image = this.imageservice.getPreviousImage(this.current_id);
-    this.current_id -= 1;
-
-  }
-
-  getImageid() : number{
-    return this.imagesData[this.current_id].id
-  }
-
-
-  // getImages() {
-  //   this._http.get('assets/img.json').subscribe((res: any) => {
- 
-  //    this.imagesData = res;
-
-  //   }, error => {
-
-  //     console.log(error);
-
-  //   });
-
-  // }
 
 }
-
-
-export interface ImagesJsonFormate {
-
-  id: number;
-
-  url : string;
-
-  subsetId : number;
-
-  toDelete : boolean;
-
-  annotationIds : any
-}
-

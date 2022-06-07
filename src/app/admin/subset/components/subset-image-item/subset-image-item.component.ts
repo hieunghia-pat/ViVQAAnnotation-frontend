@@ -17,14 +17,16 @@ export class SubsetImageItemComponent implements OnInit, OnChanges {
 
   constructor(
     private imageService: ImageService,
-    private domSanitizer: DomSanitizer,
     private route: Router
   ) { }
 
   ngOnInit(): void {
     this.imageService.getImage(this.imageInterface.id).subscribe({
       next: (response: any) => {
-        this.image = this.imageService.stringToImage(response.image)
+        if (response.status == 200)
+          this.image = this.imageService.stringToImage(response.body.image)
+        else
+          console.log(response.error)
       }
     })
   }

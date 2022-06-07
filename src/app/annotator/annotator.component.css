@@ -1,5 +1,25 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+mat-toolbar {
+    height: 7%;
+}
 
+mat-sidenav-container {
+    height: 93%;
+}
 
+mat-sidenav-content,
+mat-sidenav {
+    height: 100%;
+}
+
+.mat-sidenav {
+    width: 20%;
+    /* position: sticky; */
+}
+
+button.menu-button {
+    color: inherit;
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}

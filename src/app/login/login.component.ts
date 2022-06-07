@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { UserAuthService } from '../services/user-auth.service';
 import { OnInit } from '@angular/core'
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarService } from '../services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -16,14 +16,14 @@ export class LoginComponent implements OnInit {
   @Input() error?: string | null;
 
   @Output() submitEventmitter = new EventEmitter();
-  
+
   public fetchingInfo: boolean = false;
 
   constructor(
     private loginService: LoginService,
     private userAuthService: UserAuthService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBarService: SnackBarService
   ) { }
 
   form: FormGroup = new FormGroup({
@@ -41,31 +41,37 @@ export class LoginComponent implements OnInit {
     this.fetchingInfo = !this.fetchingInfo
   }
 
-
   submit() {
     this.toggleFetchingInfo()
     this.loginService.login(this.form.value).subscribe({
       next: (response: any) => {
-        this.loginService.isLoggedIn = true
-        this.userAuthService.setAccessToken(response.access_token)
-        this.userAuthService.setRefreshToken(response.refresh_token)
-        let username :string = this.form.value.username;
-        this.userAuthService.setUsername(username);
-        let role: string = response.role;
-        this.userAuthService.setRole(role)
-        this.toggleFetchingInfo()
-        if (role === "ROLE_ADMIN") {
-          this.router.navigate(["/admin"])
+        if (response.status == 200) {
+          this.loginService.isLoggedIn = true
+
+          this.userAuthService.setAccessToken(response.accessToken)
+          this.userAuthService.setRefreshToken(response.refreshToken)
+
+          let username: string = this.form.value.username;
+          this.userAuthService.setUsername(username);
+          
+          let role: string = response.role;
+          this.userAuthService.setRole(role)
+          
+          this.toggleFetchingInfo()
+          if (role === "ROLE_ADMIN") {
+            this.router.navigate(["/admin"])
+          }
+          else {
+            this.router.navigate(["/annotator"])
+          }
         }
         else {
-          this.router.navigate(["/annotator"])
+          this.snackBarService.openSnackBar(response.error)  
         }
       },
-      error: error => {
+      error: (error) => {
         this.toggleFetchingInfo()
-        this.snackBar.open(this.loginService.errorMessage!, "ok", {
-          duration: 5000
-        })
+        this.snackBarService.openSnackBar(error.message)
       }
     })
   }

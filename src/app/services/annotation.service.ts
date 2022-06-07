@@ -17,6 +17,10 @@ export class AnnotationService {
         return this.httpClient.get(this.PATH_OF_API + `/get/image/${imageId}`)
     }
 
+    public getAnnotationByUserForImage(username: string, imageId: number): Observable<any> {
+        return this.httpClient.get(this.PATH_OF_API + `/get/annotation-per-image?username=${username}&id=${imageId}`)
+    }
+
     public getAnnotation(annotationId: string): Observable<any> {
         return this.httpClient.get(this.PATH_OF_API + `/get/annotation/${annotationId}`)
     }
