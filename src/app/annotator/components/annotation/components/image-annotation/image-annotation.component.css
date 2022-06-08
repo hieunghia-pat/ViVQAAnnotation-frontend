@@ -11,17 +11,21 @@
     top: 0px;
     left: 0px;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .image-container {
     width: 50%;
     height: 100%;
+    padding: 0px;
+    margin: 0px;
 }
 
 .annotation-container {
     width: 50%;
     height: 100%;
-    padding: 0px;
-    margin: 0px;
-    overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

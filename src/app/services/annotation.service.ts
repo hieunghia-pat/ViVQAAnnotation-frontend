@@ -8,6 +8,7 @@ import { AnnotationInterface } from "../interfaces/annotation.interface";
 })
 export class AnnotationService {
     PATH_OF_API: string = 'https://openvivqa-nlp-uit.herokuapp.com/api/v1/annotations';
+    // PATH_OF_API: string = 'http://localhost:8080/api/v1/annotations';
 
     constructor(
         private httpClient: HttpClient

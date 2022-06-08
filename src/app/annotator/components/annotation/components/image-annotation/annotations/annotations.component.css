@@ -1,15 +1,44 @@
-.annotation-container {
-    width: 97%;
-    border: 1px solid gainsboro;
-    margin: 0.5rem;
-    padding: 1.5rem;
-    border-radius: 10px;
-    -ms-overflow-style: none;
+.button-container {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.annotation-container::-webkit-scrollbar {
+.button-container:hover .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2.5rem;
+    color: black;
+    font-size: xx-large;
+}
+
+.icon {
     display: none;
+}
+
+.container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.annotation-container {
+    width: 100%;
+    border: 1px solid gainsboro;
+    padding: 1.5rem;
+}
+
+.loading-container {
+    width: 100%;
 }
 
 .title {

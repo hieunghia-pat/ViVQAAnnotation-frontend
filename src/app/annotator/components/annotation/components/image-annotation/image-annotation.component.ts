@@ -1,7 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AnnotationInterface } from 'src/app/interfaces/annotation.interface';
 import { SubsetInterface } from 'src/app/interfaces/subset.interface';
 import { AnnotationService } from 'src/app/services/annotation.service';
+import { ImageService } from 'src/app/services/image.service';
+import { SnackBarService } from 'src/app/services/snackbar.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
 
 @Component({
   selector: 'app-image-annotation',
@@ -12,52 +16,110 @@ export class ImageAnnotationComponent implements OnChanges {
 
   @Input() subset!: SubsetInterface
 
-  public annotation!: AnnotationInterface
+  public image: any;
+  public annotation: AnnotationInterface = {
+    "actionQA": false,
+    "answer": "",
+    "answerType": 2,
+    "id": "00000000-0000-0000-0000-000000000000",
+    "imageId": 702,
+    "question": "",
+    "questionType": 0,
+    "stateQA": false,
+    "textQA": false,
+    "userId": "f545d643-a048-47dd-8b88-48094b54e5c5"
+  }
   public currentIndex: number = 0;
+  public fetchingData: boolean = false
 
   constructor(
-    private annotationService: AnnotationService
+    private imageService: ImageService,
+    private annotationService: AnnotationService,
+    private userAuthService: UserAuthService,
+    private snackBarService: SnackBarService
   ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // this.fetchAnnotation(this.subset.imageIds[this.currentIndex])   
-    this.annotation =
-      {
-        id: "0",
-        imageId: 400,
-        userId: "nhn",
-        question: "người phụ nữ đang đi du lịch đến đâu?",
-        answer: "Hội An",
-        questionType: 0,
-        answerType: 1,
-        textQA: true,
-        stateQA: true,
-        actionQA: true
-      }
+  public toggleFetchingData(): void {
+    this.fetchingData = !this.fetchingData
   }
 
-  public fetchAnnotation(imageId: number): void {
-    this.annotationService.getAnnotationByImage(imageId).subscribe({
+  ngOnChanges(changes: SimpleChanges): void {
+    let imageId: number = this.subset.imageIds[this.currentIndex]
+    this.toggleFetchingData()
+    this.imageService.getImage(imageId).subscribe({ // first fetching the image
       next: (response: any) => {
         if (response.status == 200) {
-          this.annotation = response.body
+          this.image = this.imageService.stringToImage(response.body.image)
+          let username: string = this.userAuthService.getUsername()!
+          this.annotationService.getAnnotationByUserForImage(username, imageId).subscribe({ // then fetching the annotation of the user for this image
+            next: (response: any) => {
+              this.toggleFetchingData()
+              if (response.status == 200) {
+                this.annotation = response.body
+              }
+              else {
+                this.snackBarService.openSnackBar(`Error while fetching annotation of user ${username} for image ${imageId}`)
+              }
+            },
+            error: (error: HttpErrorResponse) => {
+              this.toggleFetchingData()
+              this.snackBarService.openSnackBar(`Status ${error.error}. Error: ${error.message}`)
+            }
+          })
         }
         else {
-          console.log(response.error)
+          this.snackBarService.openSnackBar(`Error while fetching image ${imageId}`)
         }
+      },
+      error: (error: HttpErrorResponse) => {
+        this.toggleFetchingData()
+        this.snackBarService.openSnackBar(`Status ${error.error}. Error: ${error.message}`)
       }
     })
   }
 
-  public nextImage(): void {
-    this.currentIndex = this.currentIndex % this.subset.imageIds.length
-    this.fetchAnnotation(this.subset.imageIds[this.currentIndex])
+  private fetchData(): void {
+    let imageId: number = this.subset.imageIds[this.currentIndex]
+    this.toggleFetchingData()
+    this.imageService.getImage(imageId).subscribe({ // first fetching the image
+      next: (response: any) => {
+        if (response.status == 200) {
+          this.image = this.imageService.stringToImage(response.body.image)
+          let username: string = this.userAuthService.getUsername()!
+          this.annotationService.getAnnotationByUserForImage(username, imageId).subscribe({ // then fetching the annotation of the user for this image
+            next: (response: any) => {
+              this.toggleFetchingData()
+              if (response.status == 200) {
+                this.annotation = response.body
+              }
+              else {
+                this.snackBarService.openSnackBar(`Error while fetching annotation of user ${username} for image ${imageId}`)
+              }
+            },
+            error: (error: HttpErrorResponse) => {
+              this.toggleFetchingData()
+              this.snackBarService.openSnackBar(`Status ${error.error}. Error: ${error.message}`)
+            }
+          })
+        }
+        else {
+          this.snackBarService.openSnackBar(`Error while fetching image ${imageId}`)
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        this.toggleFetchingData()
+        this.snackBarService.openSnackBar(`Status ${error.error}. Error: ${error.message}`)
+      }
+    })
   }
 
-  public previousImage(): void {
-    this.currentIndex = this.currentIndex - 1;
+  public navigateImage(direction: number): void {
+    this.currentIndex += direction
     if (this.currentIndex < 0)
       this.currentIndex = 0
-    this.fetchAnnotation(this.subset.imageIds[this.currentIndex])
+    if (this.currentIndex >= this.subset.imageIds.length)
+      this.currentIndex = this.subset.imageIds.length - 1
+
+    this.fetchData()
   }
 }

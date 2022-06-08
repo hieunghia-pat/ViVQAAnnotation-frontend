@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { SubsetInterface } from 'src/app/interfaces/subset.interface';
 import { SnackBarService } from 'src/app/services/snackbar.service';
 import { SubsetService } from 'src/app/services/subset.service';
@@ -21,7 +20,6 @@ export class AnnotationComponent implements OnInit {
   constructor(
     private subsetService: SubsetService,
     private userAuthService: UserAuthService,
-    private router: Router,
     private snackBarService: SnackBarService
   ) { }
 

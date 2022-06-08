@@ -1,5 +1,7 @@
 <div class="container">
-    <app-image class="image-container" [imageId]="subset.imageIds[currentIndex]"></app-image>
+    <app-image class="image-container" 
+                [image]="image"></app-image>
     
-    <app-annotations class="annotation-container" [annotation]="annotation"></app-annotations>
+    <app-annotations class="annotation-container" [annotation]="annotation"
+                        (imageChange)="navigateImage($event)" [fetchingData]="fetchingData"></app-annotations>
 </div>
