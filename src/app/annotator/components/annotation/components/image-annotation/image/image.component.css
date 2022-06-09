@@ -6,8 +6,16 @@
     align-items: center;
 }
 
+.image-container {
+    width: 74%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 img {
-    width: 90%;
+    width: 100%;
     height: 80%;
     object-fit: contain
 }

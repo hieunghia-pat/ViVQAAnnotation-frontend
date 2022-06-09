@@ -1,48 +1,71 @@
-<div class="annotation-container">
+<div class="button-container" (click)="onNavigatingImage(fetchingData? 0 : -1)">
+  <mat-icon class="icon">keyboard_double_arrow_left</mat-icon>
+</div>
 
-  <mat-form-field class="annotation" appearance="outline">
-    <mat-label>Question</mat-label>
-    <input matInput placeholder="question" [value]="annotation.question" />
-    <mat-icon matPrefix>help</mat-icon>
-  </mat-form-field>
+<div class="container">
+  <div class="annotation-container">
 
-  <mat-form-field class="annotation" appearance="outline">
-    <mat-label>Answer</mat-label>
-    <input matInput placeholder="answer" [value]="annotation.answer" />
-    <mat-icon matPrefix>question_answer</mat-icon>
-  </mat-form-field>
+    <mat-form-field class="annotation" appearance="outline">
+      <mat-label>Question</mat-label>
+      <input #question matInput placeholder="question" [value]="annotation.question" (change)="onQuestionChanged(question.value)" />
+      <mat-icon matPrefix>help</mat-icon>
+    </mat-form-field>
 
-  <div class="type">
-    <div class="checkbox">
-      <mat-checkbox [checked]="annotation.textQA" [color]="'primary'">Text QA</mat-checkbox>
-      <mat-checkbox [checked]="annotation.stateQA" [color]="'primary'">State QA
-      </mat-checkbox>
-      <mat-checkbox [checked]="annotation.actionQA" [color]="'primary'">Action QA
-      </mat-checkbox>
-    </div>
-    <div class="selection">
-      <div class="type-selection">
-        <mat-form-field appearance="outline">
-          <mat-label>Question's type</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.id">
-              {{questionType.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+    <mat-form-field class="annotation" appearance="outline">
+      <mat-label>Answer</mat-label>
+      <input #answer matInput placeholder="answer" [value]="annotation.answer" (change)="onAnswerChanged(answer.value)" />
+      <mat-icon matPrefix>question_answer</mat-icon>
+    </mat-form-field>
+
+    <div class="type">
+
+      <div class="checkbox">
+        <mat-checkbox #textQA [checked]="annotation.textQA" [color]="'primary'" (change)="onTextQAChanged(textQA.checked)" >
+          Text QA
+        </mat-checkbox>
+        <mat-checkbox #stateQA [checked]="annotation.stateQA" [color]="'primary'" (change)="onStateQAChanged(stateQA.checked)" >
+          State QA
+        </mat-checkbox>
+        <mat-checkbox #actionQA [checked]="annotation.actionQA" [color]="'primary'" (change)="onActionQAChanged(actionQA.checked)" >
+          Action QA
+        </mat-checkbox>
       </div>
 
-      <div class="type-selection">
-        <mat-form-field appearance="outline">
-          <mat-label>Answer's type</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let answerType of answerTypes" [value]="answerType.id">
-              {{answerType.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="selection">
+        <div class="type-selection">
+          <mat-form-field appearance="outline">
+            <mat-label>Question's type</mat-label>
+            <mat-select #questionType (valueChange)="onQuestionTypeChanged(questionType.value)" [value]="annotation.questionType" >
+              <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.id">
+                {{questionType.id}} - {{questionType.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="type-selection">
+          <mat-form-field appearance="outline">
+            <mat-label>Answer's type</mat-label>
+            <mat-select #answerType (valueChange)="onAnswerTypeChanged(answerType.value)" [value]="annotation.answerType" >
+              <mat-option *ngFor="let answerType of answerTypes" [value]="answerType.id">
+                {{answerType.id}} - {{answerType.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
       </div>
+
     </div>
+
   </div>
 
+  <div class="loading-container" *ngIf="fetchingData">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+
+</div>
+
+<div class="button-container" (click)="onNavigatingImage(fetchingData? 0 : +1)">
+  <mat-icon class="icon">keyboard_double_arrow_right</mat-icon>
 </div>
