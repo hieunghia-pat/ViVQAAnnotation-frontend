@@ -23,6 +23,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogContentExampleDialog } from './components/guideline/guideline.component';
+import {MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -34,7 +36,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         ImageAnnotationComponent,
         AnnotatorComponent,
         ImageComponent,
-        AnnotationsComponent
+        AnnotationsComponent,
+        DialogContentExampleDialog
     ],
     imports: [
         CommonModule,
@@ -52,7 +55,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatInputModule,
         MatCheckboxModule,
         MatSelectModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule
     ]
 })
 export class AnnotatorModule { }
