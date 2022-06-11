@@ -26,7 +26,7 @@ export class AnnotatorService {
   }
 
   public updateAnnotator(annotator: AnnotatorInterface): Observable<any> {
-    return this.httpclient.put(this.PATH_OF_API + `/update/${annotator.username}`, annotator)
+    return this.httpclient.put(this.PATH_OF_API + `/update/${annotator.id}`, annotator)
   }
 
   public deleteAnnotator(annotatorName: string): Observable<any> {

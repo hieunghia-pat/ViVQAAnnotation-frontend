@@ -1,1 +1,9 @@
-<p>account works!</p>
+<div class="loading" *ngIf="fetchingInformation">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div class="container">
+    <app-information class="information-container" [information]="information" *ngIf="!fetchingInformation">
+
+    </app-information>
+</div>
