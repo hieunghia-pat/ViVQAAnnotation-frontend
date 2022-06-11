@@ -26,6 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InformationComponent } from './components/account/information/information.component';
 import { UpdateComponent } from './components/account/information/update/update.component';
 import { MatCardModule } from '@angular/material/card';
+import { DialogContentExampleDialog } from './components/guideline/guideline.component';
+import {MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -39,7 +41,8 @@ import { MatCardModule } from '@angular/material/card';
         ImageComponent,
         AnnotationsComponent,
         InformationComponent,
-        UpdateComponent
+        UpdateComponent,
+        DialogContentExampleDialog
     ],
     imports: [
         CommonModule,
@@ -58,7 +61,8 @@ import { MatCardModule } from '@angular/material/card';
         MatCheckboxModule,
         MatSelectModule,
         ReactiveFormsModule,
-        MatCardModule
+        MatCardModule,
+        MatDialogModule
     ]
 })
 export class AnnotatorModule { }

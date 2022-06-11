@@ -4,7 +4,11 @@
 <div class="container" *ngIf="!fetchingSubset">
     <app-subset-list class="sidenav" [subsets]="subsetInterfaces" [(subset)]="selectedSubset"></app-subset-list>
 
+
     <mat-divider [vertical]="true"></mat-divider>
 
     <app-image-annotation class="sidenav-content" [subset]="selectedSubset"></app-image-annotation>
+
+    <app-guideline ></app-guideline>
+
 </div>
