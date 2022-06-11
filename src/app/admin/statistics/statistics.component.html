@@ -1,1 +1,22 @@
-<p>statistics works!</p>
+<div class="loading">
+    <mat-progress-bar mode="indeterminate" *ngIf="fetchingData"></mat-progress-bar>
+</div>
+
+<div clas="content">
+    <mat-tab-group mat-align-tabs="left" preserveContent="true"
+        (selectedIndexChange)="onTabChanged($event)">
+        <mat-tab label="Annotators Statistics">
+            <div class="container">
+                <app-annotator-list class="sidenav" [annotators]="annotators" (annotatorChanged)="onAnnotatorChanged($event)"></app-annotator-list>
+                <app-annotator-statistics class="sidenav-content" [annotator]="selectedAnnotator"></app-annotator-statistics>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Subsets Statistics">
+            <div class="container">
+                <app-subset-list class="sidenav"></app-subset-list>
+                <app-subset-statistics class="sidenav-content"></app-subset-statistics>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -1,4 +1,8 @@
-<div class="container">
+<div class="loading" *ngIf="fetchingData">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div class="container" *ngIf="!fetchingData">
     <div class="image">
         <img [src]="image" [alt]="'image'"/>
     </div>

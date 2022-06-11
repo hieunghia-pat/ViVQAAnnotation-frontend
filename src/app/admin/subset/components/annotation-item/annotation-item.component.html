@@ -1,50 +1,57 @@
 <div class="container">
     <div class="title">
-        <mat-icon>person</mat-icon>
-        <div>
-            {{annotationInterface.userId}}
+        <mat-icon class="icon">person</mat-icon>
+    <div class="loading" *ngIf="fetchingAnnotator">
+        <mat-icon class="loading-icon">refresh</mat-icon>
+    </div>
+        <div class="username" *ngIf="!fetchingAnnotator">
+            {{annotatorInterface.username}}
         </div>
     </div>
 
-    <mat-form-field class="annotation" appearance="outline">
-        <mat-label>Question</mat-label>
-        <input matInput placeholder="question" [value]="annotationInterface.question" disabled/>
-        <mat-icon matPrefix>help</mat-icon>
-    </mat-form-field>
+    <div class="content">
+        <mat-form-field class="annotation" appearance="outline">
+            <mat-label>Question</mat-label>
+            <input matInput placeholder="question" [value]="annotationInterface.question" disabled />
+            <mat-icon matPrefix>help</mat-icon>
+        </mat-form-field>
 
-    <mat-form-field class="annotation" appearance="outline">
-        <mat-label>Answer</mat-label>
-        <input matInput placeholder="question" [value]="annotationInterface.answer" disabled/>
-        <mat-icon matPrefix>question_answer</mat-icon>
-    </mat-form-field>
+        <mat-form-field class="annotation" appearance="outline">
+            <mat-label>Answer</mat-label>
+            <input matInput placeholder="question" [value]="annotationInterface.answer" disabled />
+            <mat-icon matPrefix>question_answer</mat-icon>
+        </mat-form-field>
 
-    <div class="type">
-        <div class="checkbox">
-            <mat-checkbox disabled [checked]="annotationInterface.textQA" [color]="'primary'">Text QA</mat-checkbox>
-            <mat-checkbox disabled [checked]="annotationInterface.stateQA" [color]="'primary'">State QA</mat-checkbox>
-            <mat-checkbox disabled [checked]="annotationInterface.actionQA" [color]="'primary'">Action QA</mat-checkbox>
-        </div>
-        <div class="selection">
-            <div class="type-selection">
-                <mat-form-field appearance="outline">
-                    <mat-label>Question's type</mat-label>
-                    <mat-select disabled>
-                        <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.id">
-                            {{questionType.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+        <div class="type">
+            <div class="checkbox">
+                <mat-checkbox disabled [checked]="annotationInterface.textQA" [color]="'primary'">Text QA</mat-checkbox>
+                <mat-checkbox disabled [checked]="annotationInterface.stateQA" [color]="'primary'">State QA
+                </mat-checkbox>
+                <mat-checkbox disabled [checked]="annotationInterface.actionQA" [color]="'primary'">Action QA
+                </mat-checkbox>
             </div>
+            <div class="selection">
+                <div class="type-selection">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Question's type</mat-label>
+                        <mat-select disabled [value]="annotationInterface.questionType">
+                            <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.id">
+                                {{questionType.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
 
-            <div class="type-selection">
-                <mat-form-field appearance="outline">
-                    <mat-label>Answer's type</mat-label>
-                    <mat-select disabled>
-                        <mat-option *ngFor="let answerType of answerTypes" [value]="answerType.id">
-                            {{answerType.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <div class="type-selection">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Answer's type</mat-label>
+                        <mat-select disabled [value]="annotationInterface.answerType">
+                            <mat-option *ngFor="let answerType of answerTypes" [value]="answerType.id">
+                                {{answerType.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
         </div>
     </div>

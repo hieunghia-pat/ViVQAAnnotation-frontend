@@ -1,0 +1,78 @@
+<mat-progress-bar mode="indeterminate" *ngIf="fetchingData"></mat-progress-bar>
+<mat-divider></mat-divider>
+<div class="container" *ngIf="!fetchingData">
+    <p>
+        <mat-icon class="icon">photo_library</mat-icon>
+        Total annotated images: {{statistics.totalAnnotatedImages}}
+    </p>
+    <p>
+        <mat-icon class="icon">image_not_supported</mat-icon>
+        Total deleted images: {{statistics.totalDeletedImages}}
+    </p>
+    <div class="progress">
+        <div class="prefix">
+            <mat-icon class="icon">photo</mat-icon>
+            Remaining images: 
+        </div>
+        <mat-progress-bar mode="determinate" class="progress-bar"
+            [value]="((statistics.totalAnnotatedImages + statistics.totalDeletedImages) / statistics.totalImages) * 100">
+        </mat-progress-bar>
+        <div class="suffix">
+            {{ statistics.totalImages - (statistics.totalAnnotatedImages + statistics.totalDeletedImages) }} / 
+            {{ statistics.totalImages }}
+        </div>
+    </div>
+
+    <div class="progress">
+        <div class="prefix">
+            <mat-icon>abc</mat-icon>
+            Total text-QA: 
+        </div>
+        <mat-progress-bar mode="determinate" class="progress-bar"
+            [value]="(statistics.totalTextQA / (statistics.totalTextQA + statistics.totalStateQA + statistics.totalActionQA)) * 100">
+        </mat-progress-bar>
+        <div class="suffix">
+            {{ statistics.totalTextQA }} / {{ statistics.totalTextQA + statistics.totalStateQA + statistics.totalActionQA }}
+        </div>
+    </div>
+
+    <div class="progress">
+        <div class="prefix">
+            <mat-icon>landscape</mat-icon>
+            Total state-QA: 
+        </div>
+        <mat-progress-bar mode="determinate" class="progress-bar"
+            [value]="(statistics.totalStateQA / (statistics.totalTextQA + statistics.totalStateQA + statistics.totalActionQA)) * 100">
+        </mat-progress-bar>
+        <div class="suffix">
+            {{ statistics.totalStateQA }} / {{ statistics.totalTextQA + statistics.totalStateQA + statistics.totalActionQA }}
+        </div>
+    </div>
+
+    <div class="progress">
+        <div class="prefix">
+            <mat-icon>directions_run</mat-icon>
+            Total action-QA: 
+        </div>
+        <mat-progress-bar mode="determinate" class="progress-bar"
+            [value]="(statistics.totalActionQA / (statistics.totalTextQA + statistics.totalStateQA + statistics.totalActionQA)) * 100">
+        </mat-progress-bar>
+        <div class="suffix">
+            {{ statistics.totalActionQA }} / {{ statistics.totalTextQA + statistics.totalStateQA + statistics.totalActionQA }}
+        </div>
+    </div>
+
+    <div class="progress">
+        <div class="prefix">
+            <mat-icon>today</mat-icon>
+            Remaining days: 
+        </div>
+        <mat-progress-bar mode="determinate" class="progress-bar"
+            [value]="((getTotalDays() - getRemainingDays()) / getTotalDays()) * 100">
+        </mat-progress-bar>
+        <div class="suffix">
+            {{ getRemainingDays() }} / {{ getTotalDays() }}
+        </div>
+    </div>
+
+</div>

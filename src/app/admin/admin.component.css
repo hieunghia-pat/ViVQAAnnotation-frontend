@@ -23,3 +23,12 @@ button.menu-button {
   border: none;
   outline: none;
 }
+
+.logout {
+  left: 101rem;
+  font-size: large;
+}
+
+span {
+  margin-left: 0.5rem;
+}

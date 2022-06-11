@@ -17,8 +17,12 @@ export class AnnotatorService {
     return this.httpclient.get(this.PATH_OF_API + "/get")
   }
 
-  public getAnnotator(annotatorName: string) {
+  public getAnnotatorByUsername(annotatorName: string) {
     return this.httpclient.get(this.PATH_OF_API + `/get/${annotatorName}`)
+  }
+
+  public getAnnotatorById(id: string) {
+    return this.httpclient.get(this.PATH_OF_API + `/get/annotator?id=${id}`)
   }
 
   public addAnnotator(annotator: AnnotatorInterface): Observable<any> {

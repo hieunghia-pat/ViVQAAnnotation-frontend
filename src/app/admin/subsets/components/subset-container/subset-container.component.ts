@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SubsetItem } from '../interfaces/subset-item.interface';
 import { SubsetService } from 'src/app/services/subset.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarService } from 'src/app/services/snackbar.service';
 
 @Component({

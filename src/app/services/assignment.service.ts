@@ -1,9 +1,7 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UserSubsetInterface } from '../interfaces/usersubset.interface';
-import { ResponseErrorInterface } from '../interfaces/error.interface';
-import { ErrorService } from './error.service';
 import { AssignmentInterface } from '../interfaces/assignment.interface';
 import * as moment from 'moment';
 
@@ -58,6 +56,22 @@ export class AssignmentService {
 
   public getAssignmentByAnnotator(annotatorName: string): Observable<any> {
     return this.httpClient.get(this.PATH_OF_API + `/get/${annotatorName}`)
+  }
+
+  public getStatisticsByUsernamePerSubset(annotatorName: string, subsetId: number) {
+    return this.httpClient.get(this.PATH_OF_API + `/get/statistics/subset?subset-id=${subsetId}&username=${annotatorName}`)
+  }
+
+  public getPosTaggingByUsernamePerSubset(annotatorName: string, subsetId: number) {
+    return this.httpClient.get(this.PATH_OF_API + `/get/pos/subset?subset-id=${subsetId}&username=${annotatorName}`)
+  }
+
+  public getStatistics(annotatorName: string): Observable<any> {
+    return this.httpClient.get(this.PATH_OF_API + `/get/statistics/subsets?username=${annotatorName}`)
+  }
+
+  public getPosTagging(annotatorName: string): Observable<any> {
+    return this.httpClient.get(this.PATH_OF_API + `/get/pos/subsets?username=${annotatorName}`)
   }
   
 }

@@ -1,0 +1,24 @@
+<div class="loading" *ngIf="fetchingAssignments">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div class="content" *ngIf="!fetchingAssignments">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let assignment of assignments; let idx=index">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="title-container">
+                    <mat-icon class="icon">folder</mat-icon>
+                    <div class="title">
+                        Subset {{assignment.subsetId}}
+                    </div>
+                    <mat-divider></mat-divider>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <ng-template matExpansionPanelContent>
+                <app-statistics-item [username]="annotator.username" [subsetId]="assignment.subsetId"
+                                        [assignment]="assignment" ></app-statistics-item>
+            </ng-template>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

@@ -30,7 +30,7 @@ const routes: Routes = [
       { path: 'statistics', component: StatisticsComponent, data: { title: 'Statistics' } },
       { path: "assignment", component: AssignmentComponent, data: { title: "Assignment" } },
     ],
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'annotator', component: AnnotatorComponent, data: { title: "Annotator", role: "ROLE_ANNOTATOR" },

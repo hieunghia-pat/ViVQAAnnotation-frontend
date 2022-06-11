@@ -33,7 +33,6 @@ export class SubsetComponent implements OnInit {
         this.toggleFetchingImage()
         this.imageService.getImageInterfacesBySubset(this.subsetId).subscribe({
           next: (response: any) => {
-            console.log(response)
             this.toggleFetchingImage()
             if (response.status == 200) {
               this.imageInterfaces = response.body

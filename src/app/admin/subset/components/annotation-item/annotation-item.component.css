@@ -7,11 +7,16 @@
 }
 
 .disabled-selection {
-    user-select: none; /* supported by Chrome and Opera */
-   -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-   -moz-user-select: none; /* Firefox */
-   -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    /* supported by Chrome and Opera */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
 }
 
 .title {
@@ -21,6 +26,35 @@
     margin: 0.25rem;
     justify-content: baseline;
     align-items: center;
+}
+
+.content {
+    width: 100%;
+    height: 80%;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg)
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-icon {
+    animation: loader 0.5s linear infinite;
 }
 
 .title mat-icon {
@@ -55,7 +89,8 @@
 .selection {
     width: 50%;
     height: 100%;
-    border-radius: 10px;;
+    border-radius: 10px;
+    ;
     border: 1px solid gainsboro;
     margin: 0.5rem;
     padding: 0.5rem;

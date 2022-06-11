@@ -1,7 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { AnnotationInterface } from 'src/app/interfaces/annotation.interface';
+import { AnnotatorInterface } from 'src/app/interfaces/annotator.interface';
 import { AnswerType } from 'src/app/interfaces/answer-type.interface';
 import { QuestionType } from 'src/app/interfaces/question-type.interface';
+import { AnnotatorService } from 'src/app/services/annotator.service';
 
 @Component({
   selector: 'app-annotation-item',
@@ -11,6 +14,9 @@ import { QuestionType } from 'src/app/interfaces/question-type.interface';
 export class AnnotationItemComponent implements OnInit {
 
   @Input() annotationInterface!: AnnotationInterface
+  
+  public annotatorInterface!: AnnotatorInterface
+  public fetchingAnnotator: boolean = false
 
   public questionTypes: QuestionType[] = [
     {
@@ -54,9 +60,26 @@ export class AnnotationItemComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(
+    private annotatorService: AnnotatorService
+  ) { }
+
+  private toggleFetchingAnnotator(): void {
+    this.fetchingAnnotator = !this.fetchingAnnotator
+  }
 
   ngOnInit(): void {
+    this.toggleFetchingAnnotator()
+    this.annotatorService.getAnnotatorById(this.annotationInterface.userId).subscribe({
+      next: (response: any) => {
+        this.toggleFetchingAnnotator()
+        this.annotatorInterface = response.body
+      },
+      error: (error: HttpErrorResponse) => {
+        this.toggleFetchingAnnotator()
+        console.log(error)
+      }
+    })
   }
 
 }

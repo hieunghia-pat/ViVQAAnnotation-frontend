@@ -39,6 +39,7 @@ import { AnnotatorsModule } from './admin/annotators/annotators.module';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SubsetModule } from './admin/subset/subset.module';
 import { AnnotatorModule } from './annotator/annotator.module';
+import { StatisticsModule } from './admin/statistics/statistics.module';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { AnnotatorModule } from './annotator/annotator.module';
     SubsetsModule,
     AnnotatorsModule,
     MatGridListModule,
-    AnnotatorModule
+    AnnotatorModule,
+    StatisticsModule
   ],
   providers: [
     AuthGuard,

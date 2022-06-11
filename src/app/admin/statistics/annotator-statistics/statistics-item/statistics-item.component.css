@@ -1,0 +1,33 @@
+.container {
+    margin-left: 1rem;
+}
+
+.progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0.5rem;
+}
+
+.prefix {
+    width: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 85%;
+}
+
+.suffix {
+    width: 5%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+p {
+    margin: 0.5rem
+}

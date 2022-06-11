@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="annotator-item" *ngFor="let annotator of annotators; let idx=index" (click)="annotatorChanged.emit(idx)">
+        <mat-icon>person</mat-icon>
+        <div class="text">
+            {{annotator.username}}
+        </div>
+    </div>
+</div>

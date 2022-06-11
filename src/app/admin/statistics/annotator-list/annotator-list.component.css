@@ -1,0 +1,27 @@
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.annotator-item {
+    width: 100%;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1rem;
+}
+
+.text {
+    margin-left: 0.5rem;
+}
+
+.annotator-item:hover {
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+.annotator-item:active {
+    background-color: gainsboro;
+    cursor: pointer;
+}
