@@ -21,4 +21,8 @@ export class AnnotatorComponent implements OnInit {
     this.router.navigate(["/annotator/annotation"])
   }
 
+  public logout(): void {
+    this.router.navigate(["/logout"])
+  }
+
 }

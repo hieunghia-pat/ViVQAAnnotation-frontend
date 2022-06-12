@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
+import { MardownContainerComponent } from "./mardown-container/mardown-container.component"
 
 @Component({
   selector: 'app-guideline',
@@ -11,22 +12,13 @@ export class GuidelineComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  constructor(public dialog: MatDialog) {}
+
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(MardownContainerComponent);
   }
 
 }
-
-
-@Component({
-  selector: 'dialog-content-example-dialog',
-  templateUrl: 'dialog-content-example.html',
-})
-export class DialogContentExampleDialog {}

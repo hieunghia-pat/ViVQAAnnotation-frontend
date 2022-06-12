@@ -1,0 +1,10 @@
+<div class="loading" *ngIf="fetchingData" >
+    <div class="title">
+        Loading ...
+    </div>
+    <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
+</div>
+
+<markdown [data]="data" *ngIf="!fetchingData">
+
+</markdown>

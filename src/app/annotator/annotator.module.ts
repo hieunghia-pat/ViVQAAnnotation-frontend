@@ -26,8 +26,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InformationComponent } from './components/account/information/information.component';
 import { UpdateComponent } from './components/account/information/update/update.component';
 import { MatCardModule } from '@angular/material/card';
-import { DialogContentExampleDialog } from './components/guideline/guideline.component';
-import {MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MarkdownModule, MarkdownService } from 'ngx-markdown';
+import { MardownContainerComponent } from './components/guideline/mardown-container/mardown-container.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +44,7 @@ import {MatDialogModule } from '@angular/material/dialog';
         AnnotationsComponent,
         InformationComponent,
         UpdateComponent,
-        DialogContentExampleDialog
+        MardownContainerComponent
     ],
     imports: [
         CommonModule,
@@ -62,7 +64,12 @@ import {MatDialogModule } from '@angular/material/dialog';
         MatSelectModule,
         ReactiveFormsModule,
         MatCardModule,
-        MatDialogModule
+        MatDialogModule,
+        MatButtonModule,
+        MarkdownModule
+    ],
+    providers: [
+        MarkdownService
     ]
 })
 export class AnnotatorModule { }

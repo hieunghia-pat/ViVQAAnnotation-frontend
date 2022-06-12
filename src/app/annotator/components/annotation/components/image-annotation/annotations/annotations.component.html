@@ -5,6 +5,10 @@
 <div class="container">
   <div class="annotation-container">
 
+    <div class="title">
+      Subset {{subset.id}} - {{image.filename}}
+    </div>
+
     <mat-form-field class="annotation" appearance="outline">
       <mat-label>Question</mat-label>
       <input #question matInput placeholder="question" [value]="annotation.question" (change)="onQuestionChanged(question.value)" />

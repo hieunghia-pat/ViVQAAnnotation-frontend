@@ -16,6 +16,11 @@ mat-sidenav {
     /* position: sticky; */
 }
 
+.logout {
+    left: 100rem;
+    font-size: large;
+  }
+
 button.menu-button {
     color: inherit;
     background: transparent;

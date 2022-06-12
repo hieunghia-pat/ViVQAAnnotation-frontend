@@ -2,6 +2,6 @@
     <app-image class="image-container" 
                 [image]="image"></app-image>
     
-    <app-annotations class="annotation-container" [annotation]="annotation"
+    <app-annotations class="annotation-container" [annotation]="annotation" [image]="imageInterface" [subset]="subset"
                         (imageChange)="navigateImage($event)" [fetchingData]="fetchingData"></app-annotations>
 </div>

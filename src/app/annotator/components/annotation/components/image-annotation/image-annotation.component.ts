@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AnnotationInterface } from 'src/app/interfaces/annotation.interface';
+import { ImageInterface } from 'src/app/interfaces/image.interface';
 import { SubsetInterface } from 'src/app/interfaces/subset.interface';
 import { AnnotationService } from 'src/app/services/annotation.service';
 import { ImageService } from 'src/app/services/image.service';
@@ -16,7 +17,8 @@ export class ImageAnnotationComponent implements OnChanges {
 
   @Input() subset!: SubsetInterface
 
-  public image: any;
+  public image!: string;
+  public imageInterface!: ImageInterface
   public annotation: AnnotationInterface = {
     "actionQA": false,
     "answer": "",
@@ -44,12 +46,14 @@ export class ImageAnnotationComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.currentIndex = 0
     let imageId: number = this.subset.imageIds[this.currentIndex]
     this.toggleFetchingData()
     this.imageService.getImage(imageId).subscribe({ // first fetching the image
       next: (response: any) => {
         if (response.status == 200) {
-          this.image = this.imageService.stringToImage(response.body.image)
+          this.image = response.body.url
+          this.imageInterface = response.body
           let username: string = this.userAuthService.getUsername()!
           this.annotationService.getAnnotationByUserForImage(username, imageId).subscribe({ // then fetching the annotation of the user for this image
             next: (response: any) => {
@@ -84,7 +88,8 @@ export class ImageAnnotationComponent implements OnChanges {
     this.imageService.getImage(imageId).subscribe({ // first fetching the image
       next: (response: any) => {
         if (response.status == 200) {
-          this.image = this.imageService.stringToImage(response.body.image)
+          this.image = response.body.url
+          this.imageInterface = response.body
           let username: string = this.userAuthService.getUsername()!
           this.annotationService.getAnnotationByUserForImage(username, imageId).subscribe({ // then fetching the annotation of the user for this image
             next: (response: any) => {

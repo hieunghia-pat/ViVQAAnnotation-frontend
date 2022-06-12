@@ -7,11 +7,6 @@ export let menu: NavItem[] = [
     route: 'annotator/annotation'
   },
   {
-    displayName: "Guidline",
-    iconName: "note",
-    route: "annotator/guideline"
-  },
-  {
     displayName: 'Account',
     iconName: 'account_circle',
     route: 'annotator/account'

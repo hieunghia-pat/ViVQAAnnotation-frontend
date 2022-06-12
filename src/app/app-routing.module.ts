@@ -12,7 +12,6 @@ import { SubsetComponent } from './admin/subset/subset.component';
 import { AssignmentComponent } from './admin/assignment/assignment.component';
 import { ImageItemComponent } from './admin/subset/components/image-item/image-item.component';
 import { AnnotationComponent } from './annotator/components/annotation/annotation.component';
-import { GuidelineComponent } from './annotator/components/guideline/guideline.component';
 import { AccountComponent } from './annotator/components/account/account.component';
 import { AnnotatorComponent } from './annotator/annotator.component';
 
@@ -36,7 +35,6 @@ const routes: Routes = [
     path: 'annotator', component: AnnotatorComponent, data: { title: "Annotator", role: "ROLE_ANNOTATOR" },
     children: [
       { path: "annotation", component: AnnotationComponent, data: { title: "Annotation" } },
-      { path: "guideline", component: GuidelineComponent, data: { title: "Guideline" } },
       { path: "account", component: AccountComponent, data: { title: "Account Management" } }
     ],
     // canActivate: [AuthGuard]

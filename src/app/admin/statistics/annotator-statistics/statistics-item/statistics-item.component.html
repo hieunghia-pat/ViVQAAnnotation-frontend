@@ -14,7 +14,7 @@
             <mat-icon class="icon">photo</mat-icon>
             Remaining images: 
         </div>
-        <mat-progress-bar mode="determinate" class="progress-bar"
+        <mat-progress-bar mode="determinate" class="progress-bar" color="warn"
             [value]="((statistics.totalAnnotatedImages + statistics.totalDeletedImages) / statistics.totalImages) * 100">
         </mat-progress-bar>
         <div class="suffix">

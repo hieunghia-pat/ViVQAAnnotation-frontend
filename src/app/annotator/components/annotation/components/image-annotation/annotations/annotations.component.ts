@@ -7,6 +7,8 @@ import { NIL } from 'uuid';
 import { AnnotationService } from 'src/app/services/annotation.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SnackBarService } from 'src/app/services/snackbar.service';
+import { SubsetInterface } from 'src/app/interfaces/subset.interface';
+import { ImageInterface } from 'src/app/interfaces/image.interface';
 
 @Component({
   selector: 'app-annotations',
@@ -14,6 +16,8 @@ import { SnackBarService } from 'src/app/services/snackbar.service';
   styleUrls: ['./annotations.component.css']
 })
 export class AnnotationsComponent implements OnInit {
+  @Input() image!: ImageInterface
+  @Input() subset!: SubsetInterface
   @Input() annotation!: AnnotationInterface
   @Input() fetchingData!: boolean
 

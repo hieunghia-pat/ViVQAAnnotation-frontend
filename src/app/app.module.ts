@@ -40,6 +40,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { SubsetModule } from './admin/subset/subset.module';
 import { AnnotatorModule } from './annotator/annotator.module';
 import { StatisticsModule } from './admin/statistics/statistics.module';
+import { MarkdownModule, MarkdownService } from 'ngx-markdown';
+import { SecurityContext } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,10 @@ import { StatisticsModule } from './admin/statistics/statistics.module';
     AnnotatorsModule,
     MatGridListModule,
     AnnotatorModule,
-    StatisticsModule
+    StatisticsModule,
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE
+    })
   ],
   providers: [
     AuthGuard,
@@ -92,7 +97,8 @@ import { StatisticsModule } from './admin/statistics/statistics.module';
     LoginService,
     SubsetService,
     AnnotatorService,
-    SnackBarService
+    SnackBarService,
+    MarkdownService
   ],
   bootstrap: [AppComponent]
 })
