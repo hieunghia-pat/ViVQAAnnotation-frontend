@@ -21,6 +21,10 @@ export class AnnotatorService {
     return this.httpclient.get(this.PATH_OF_API + `/get/${annotatorName}`)
   }
 
+  public getAnnotatorByUsernameWithPassword(annotatorName: string) {
+    return this.httpclient.get(this.PATH_OF_API + `/get/with-password/${annotatorName}`)
+  }
+
   public getAnnotatorById(id: string) {
     return this.httpclient.get(this.PATH_OF_API + `/get/annotator?id=${id}`)
   }

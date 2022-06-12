@@ -22,9 +22,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InformationComponent } from './components/account/information/information.component';
-import { UpdateComponent } from './components/account/information/update/update.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,12 +42,13 @@ import { MardownContainerComponent } from './components/guideline/mardown-contai
         ImageComponent,
         AnnotationsComponent,
         InformationComponent,
-        UpdateComponent,
         MardownContainerComponent
     ],
     imports: [
         CommonModule,
         BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
         MatIconModule,
         MatDividerModule,
         MatProgressSpinnerModule,

@@ -23,7 +23,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.toggleFetchingInformation()
-    this.annotatorService.getAnnotatorByUsername(this.userAuthService.getUsername()!).subscribe({
+    this.annotatorService.getAnnotatorByUsernameWithPassword(this.userAuthService.getUsername()!).subscribe({
       next: (response: any) => {
         this.toggleFetchingInformation()
         if (response.status == 200) {

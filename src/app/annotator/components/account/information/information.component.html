@@ -1,62 +1,53 @@
+<mat-progress-bar mode="indeterminate" *ngIf="updatingInformation"></mat-progress-bar>
+
 <div class="container">
-	<div class="avatar-container">
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREv0R1in9Ia9pA-D7UxlHlCswimbkaIymVqQ&usqp=CAU" 
-				alt="annotator-avatar" />
-	</div>
-	<div class="form-container">
-
-		<div class="field">
-			<div class="title">
-				<div>Username:</div>
-			</div>
-			<div class="content">
-				<div class="input">{{information.username}}</div>
-				<div class="icon" (click)="isUpdatingInformation=true">
-					<mat-icon>edit</mat-icon>
-				</div>
-			</div>
-		</div>
-
-		<div class="field">
-			<div class="title">
-				<div>First Name:</div>
-			</div>
-			<div class="content">
-				<div class="input">{{information.firstname}}</div>
-				<div class="icon" (click)="isUpdatingInformation=true">
-					<mat-icon>edit</mat-icon>
-				</div>
-			</div>
-		</div>
-
-		<div class="field">
-			<div class="title">
-				<div>Last Name:</div>
-			</div>
-			<div class="content">
-				<div class="input">{{information.lastname}}</div>
-				<div class="icon" (click)="isUpdatingInformation=true">
-					<mat-icon>edit</mat-icon>
-				</div>
-			</div>
-		</div>
-
-		<div class="field">
-			<div class="title">
-				<div>Password:</div>
-			</div>
-			<div class="content">
-				<div class="input">************</div>
-				<div class="icon" (click)="isUpdatingInformation=true">
-					<mat-icon>edit</mat-icon>
-				</div>
-			</div>
-		</div>
-
-	</div>
+  <div class="avatar-container">
+    <img src="assets/images/account.png"
+      alt="annotator-avatar"/>
+  </div>
+  <div class="form-container">
+    <form class="input-container">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput [(ngModel)]="information.username" [value]="information.username"
+          [ngModelOptions]="{standalone: true}" [disabled]="!isEditing">
+      </mat-form-field>
+  
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input type="text" matInput [(ngModel)]="information.firstname" [value]="information.firstname"
+          [ngModelOptions]="{standalone: true}" [disabled]="!isEditing">
+      </mat-form-field>
+  
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input type="text" matInput [(ngModel)]="information.lastname" [value]="information.lastname"
+          [ngModelOptions]="{standalone: true}" [disabled]="!isEditing">
+      </mat-form-field>
+  
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>New Password</mat-label>
+        <input [type]="showPassword ? 'text' : 'password'" matInput [(ngModel)]="information.password"
+          [value]="information.password" [ngModelOptions]="{standalone: true}" [disabled]="!isEditing">
+        <div matSuffix class="icon" (click)="toggleShowPassword()">
+          <mat-icon *ngIf="!showPassword">visibility</mat-icon>
+          <mat-icon *ngIf="showPassword">visibility_off</mat-icon>
+        </div>
+      </mat-form-field>
+    </form>
+  
+    <div class="button-container">
+      <div class="button" *ngIf="isEditing">
+        <button mat-flat-button color="primary" (click)="updateInformation()">Update</button>
+      </div>
+      <div class="button" *ngIf="isEditing">
+        <button mat-flat-button color="primary" (click)="isEditing=false">Cancel</button>
+      </div>
+      <div class="button" *ngIf="!isEditing">
+        <button mat-fab color="primary" (click)="isEditing=true">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-
-<app-update *ngIf="isUpdatingInformation" [information]="information" 
-			(closedForm)="isUpdatingInformation=false" (updatedInformation)="onUpdatedInformation($event)">
-
-</app-update>
