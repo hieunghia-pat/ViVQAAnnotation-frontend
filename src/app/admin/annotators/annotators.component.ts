@@ -30,12 +30,10 @@ export class AnnotatorsComponent implements OnInit {
     this.annotatorService.getAnnotators().subscribe({
       next: (response: any) => {
         this.toggleProcessingAnnotator()
-        if (response.status == 200) {
-          this.annotators = response.body
-        }
-        else {
-          this.snackBarService.openSnackBar(response.error)
-        }
+        this.annotators = response.body
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBarService.openSnackBar(error.message)
       }
     })
   }
@@ -46,12 +44,10 @@ export class AnnotatorsComponent implements OnInit {
     this.annotatorService.getAnnotators().subscribe({
       next: (response: any) => {
         this.toggleProcessingAnnotator()
-        if (response.status == 200) {
-          this.annotators = response.body
-        }
-        else {
-          this.snackBarService.openSnackBar(response.error)
-        }
+        this.annotators = response.body
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBarService.openSnackBar(error.message)
       }
     })
   }
@@ -84,12 +80,10 @@ export class AnnotatorsComponent implements OnInit {
     this.annotatorService.deleteAnnotator(annotator.username).subscribe({
       next: (response: any) => {
         this.toggleProcessingAnnotator()
-        if (response.status == 200) {
-          this.fetchAnnotators()
-        }
-        else {
-          this.snackBarService.openSnackBar(response.error)
-        }
+        this.fetchAnnotators()
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBarService.openSnackBar(error.message)
       }
     })
   }

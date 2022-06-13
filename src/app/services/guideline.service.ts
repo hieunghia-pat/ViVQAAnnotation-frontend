@@ -15,4 +15,8 @@ export class GuidelineService {
     public getGuideline(): Observable<any> {
         return this.httpClient.get(this.PATH_OF_API + "/get")
     }
+
+    public updateGuideline(data: string): Observable<any> {
+        return this.httpClient.put(this.PATH_OF_API + "/update", data)
+    }
 }

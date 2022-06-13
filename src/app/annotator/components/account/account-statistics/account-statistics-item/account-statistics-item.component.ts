@@ -8,11 +8,11 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { SnackBarService } from 'src/app/services/snackbar.service';
 
 @Component({
-  selector: 'app-statistics-item',
-  templateUrl: './statistics-item.component.html',
-  styleUrls: ['./statistics-item.component.css']
+  selector: 'app-account-statistics-item',
+  templateUrl: './account-statistics-item.component.html',
+  styleUrls: ['./account-statistics-item.component.css']
 })
-export class StatisticsItemComponent implements OnInit {
+export class AccountStatisticsItemComponent implements OnInit {
 
   @Input() username!: string;
   @Input() subsetId!: number;
@@ -25,8 +25,8 @@ export class StatisticsItemComponent implements OnInit {
   constructor(
     private assignmentService: AssignmentService,
     private snackBarService: SnackBarService
-  ) { 
-    
+  ) {
+
   }
 
   private toggleFetchingData(): void {
@@ -61,4 +61,5 @@ export class StatisticsItemComponent implements OnInit {
     let difference = Math.round((finishDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24)) + 1
     return difference > 0 ? difference : 0;
   }
+
 }

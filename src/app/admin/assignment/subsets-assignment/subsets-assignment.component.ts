@@ -5,6 +5,8 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { AssignmentInterface } from 'src/app/interfaces/assignment.interface';
 import * as moment from 'moment'
 import { NIL } from 'uuid';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SnackBarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-subsets-assignment',
@@ -22,7 +24,8 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
   public columnsToDisplay: string[] = ["subsetId", "assigned", "validation", "assignedDate", "finishDate", "update"];
 
   constructor(
-    private assignmentService: AssignmentService
+    private assignmentService: AssignmentService,
+    private snackBarService: SnackBarService
   ) { }
 
   ngOnInit(): void {
@@ -33,17 +36,15 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
     this.toggleFetchingTable()
     this.assignmentService.getAssignmentByAnnotator(this.user.username).subscribe({
       next: (response: any) => {
-        if (response.status == 200) {
-          this.assignments = []
-          let userSubsetInterfaces = response.body
-          userSubsetInterfaces.forEach((userSubsetInterface: UserSubsetInterface) => {
-            this.assignments.push(this.assignmentService.userSubsetToAssignment(userSubsetInterface))
-          })
-        }
-        else {
-          console.log(response.error)
-        }
+        this.assignments = []
+        let userSubsetInterfaces = response.body
+        userSubsetInterfaces.forEach((userSubsetInterface: UserSubsetInterface) => {
+          this.assignments.push(this.assignmentService.userSubsetToAssignment(userSubsetInterface))
+        })
         this.toggleFetchingTable()
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBarService.openSnackBar(error.message)
       }
     })
   }
@@ -56,14 +57,12 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
     this.toggleFetchingTable()
     this.assignmentService.getAssignmentByAnnotator(this.user.username).subscribe({
       next: (response: any) => {
-        if (response.status == 200) {
-          let userSubsetInterfaces: UserSubsetInterface[] = response.body
-          this.assignments[index] = this.assignmentService.userSubsetToAssignment(userSubsetInterfaces[index])
-        }
-        else {
-          console.log(response.error)
-        }
+        let userSubsetInterfaces: UserSubsetInterface[] = response.body
+        this.assignments[index] = this.assignmentService.userSubsetToAssignment(userSubsetInterfaces[index])
         this.toggleFetchingTable()
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBarService.openSnackBar(error.message)
       }
     })
   }
@@ -74,19 +73,17 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
 
   public updateAssignment(index: number): void {
     let assignment: UserSubsetInterface = this.assignmentService.assignmentToUserSubset(this.assignments[index])
-    console.log(assignment)
 
     if (assignment.id == NIL && assignment.assigned == false) // nothing to do
       return
 
     if (assignment.id == NIL && assignment.assigned) { // add new assignment
-      console.log("add new assignment")
       this.assignmentService.addAssignment(assignment).subscribe({
         next: (response: any) => {
-          if (response.status == 200)
-            this.refreshSubsets(index)
-          else
-            console.log(response.error)
+          this.refreshSubsets(index)
+        },
+        error: (error: HttpErrorResponse) => {
+          this.snackBarService.openSnackBar(error.message)
         }
       })
       return
@@ -95,10 +92,10 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
     if (assignment.id != NIL && !assignment.assigned) { // delete available assignment
       this.assignmentService.deleteAssignment(assignment).subscribe({
         next: (response: any) => {
-          if (response.status == 200)
-            this.refreshSubsets(index)
-          else
-            console.log(response.error)
+          this.refreshSubsets(index)
+        },
+        error: (error: HttpErrorResponse) => {
+          this.snackBarService.openSnackBar(error.message)
         }
       })
       this.refreshSubsets(index)
@@ -108,10 +105,10 @@ export class SubsetsAssignmentComponent implements OnInit, OnChanges {
     // else update available assignment
     this.assignmentService.updateAssignment(assignment).subscribe({
       next: (response: any) => {
-        if (response.status == 200)
-          this.refreshSubsets(index)
-        else
-          console.log(response.error)
+        this.refreshSubsets(index)
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBarService.openSnackBar(error.message)
       }
     })
     this.refreshSubsets(index)

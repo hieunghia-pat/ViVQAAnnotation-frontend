@@ -14,6 +14,7 @@ import { ImageItemComponent } from './admin/subset/components/image-item/image-i
 import { AnnotationComponent } from './annotator/components/annotation/annotation.component';
 import { AccountComponent } from './annotator/components/account/account.component';
 import { AnnotatorComponent } from './annotator/annotator.component';
+import { GuidelineComponent } from './admin/guideline/guideline.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -23,6 +24,7 @@ const routes: Routes = [
     path: 'admin', component: AdminComponent, data: { title: "Admin", role: "ROLE_ADMIN" },
     children: [
       { path: 'annotators', component: AnnotatorsComponent, data: { title: 'Annotators Management' } },
+      { path: 'guideline', component: GuidelineComponent, data: { title: 'Guideline' } },
       { path: "subsets", component: SubsetsComponent, data: { title: "Subsets Management" } },
       { path: "subsets/subset", component: SubsetComponent, data: { title: "Subset" } },
       { path: "subsets/subset/image", component: ImageItemComponent, data: { title: "Images" } },

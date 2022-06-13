@@ -7,6 +7,11 @@ export let menu: NavItem[] = [
     route: '/admin/annotators'
   },
   {
+    displayName: 'Guideline',
+    iconName: 'description',
+    route: '/admin/guideline'
+  },
+  {
     displayName: 'Subsets',
     iconName: 'folder',
     route: 'admin/subsets'

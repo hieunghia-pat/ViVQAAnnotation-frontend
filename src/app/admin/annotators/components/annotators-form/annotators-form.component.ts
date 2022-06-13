@@ -4,6 +4,7 @@ import { AnnotatorService } from 'src/app/services/annotator.service';
 import { SnackBarService } from 'src/app/services/snackbar.service';
 import { NIL, v4 as uuidv4 } from 'uuid'
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-annotators-form',
@@ -82,12 +83,10 @@ export class AnnotatorsFormComponent implements OnInit, OnChanges {
     this.annotatorService.addAnnotator(annotator).subscribe({
       next: (response: any) => {
         this.toggleUpdatingAnnotator()
-        if (response.status == 200) {
-          this.updatedStatus.emit(true)
-        }
-        else {
-          this.snackBarService.openSnackBar(response.error)
-        }
+        this.updatedStatus.emit(true)
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBarService.openSnackBar(error.message)
       }
     })
   }
@@ -97,12 +96,10 @@ export class AnnotatorsFormComponent implements OnInit, OnChanges {
     this.annotatorService.updateAnnotator(annotator).subscribe({
       next: (response: any) => {
         this.toggleUpdatingAnnotator()
-        if (response.status == 200) {
-          this.updatedStatus.emit(true)
-        }
-        else {
-          this.snackBarService.openSnackBar(response.error)
-        }
+        this.updatedStatus.emit(true)
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackBarService.openSnackBar(error.message)
       }
     })
   }

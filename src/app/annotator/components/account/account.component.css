@@ -10,8 +10,19 @@
 .container {
     width: 100%;
     height: 100%;
+    position: fixed;
+    display: flex;
+    background-color: white;
 }
 
 .information-container {
-    width: 100%;
+    width: 50%;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.statistics-container {
+    width: 50%;
+    overflow-y: scroll;
+    padding: 0.5rem;
 }

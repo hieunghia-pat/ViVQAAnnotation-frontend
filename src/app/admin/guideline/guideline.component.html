@@ -1,0 +1,21 @@
+<div class="loading" *ngIf="fetchingGuideline">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="container">
+    <div class="guideline-container">
+        <div class="editing-container">
+            <textarea class="text-editing" matInput [(ngModel)]="data"></textarea>
+            <div class="button-container">
+                <button class="button" mat-raised-button color="primary" (click)="updateGuideline()">
+                    Save
+                </button>
+            </div>
+        </div>
+
+        <div class="displaying-container">
+            <markdown class="guideline-content" [data]="data">
+
+            </markdown>
+        </div>
+    </div>
+</div>

@@ -42,6 +42,7 @@ import { AnnotatorModule } from './annotator/annotator.module';
 import { StatisticsModule } from './admin/statistics/statistics.module';
 import { MarkdownModule, MarkdownService } from 'ngx-markdown';
 import { SecurityContext } from '@angular/core';
+import { GuidelineComponent } from './admin/guideline/guideline.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { SecurityContext } from '@angular/core';
     LoginComponent,
     ForbiddenComponent,
     LogoutComponent,
-    MenuListItemComponent
+    MenuListItemComponent,
+    GuidelineComponent
   ],
   imports: [
     BrowserModule,

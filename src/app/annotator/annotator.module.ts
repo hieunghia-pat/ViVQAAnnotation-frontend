@@ -29,6 +29,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MarkdownModule, MarkdownService } from 'ngx-markdown';
 import { MardownContainerComponent } from './components/guideline/mardown-container/mardown-container.component';
+import { AccountStatisticsComponent } from './components/account/account-statistics/account-statistics.component';
+import { AccountStatisticsItemComponent } from './components/account/account-statistics/account-statistics-item/account-statistics-item.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -42,7 +45,9 @@ import { MardownContainerComponent } from './components/guideline/mardown-contai
         ImageComponent,
         AnnotationsComponent,
         InformationComponent,
-        MardownContainerComponent
+        MardownContainerComponent,
+        AccountStatisticsComponent,
+        AccountStatisticsItemComponent
     ],
     imports: [
         CommonModule,
@@ -66,7 +71,8 @@ import { MardownContainerComponent } from './components/guideline/mardown-contai
         MatCardModule,
         MatDialogModule,
         MatButtonModule,
-        MarkdownModule
+        MarkdownModule,
+        MatExpansionModule
     ],
     providers: [
         MarkdownService

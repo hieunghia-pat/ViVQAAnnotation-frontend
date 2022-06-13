@@ -13,7 +13,7 @@
   <ng-container matColumnDef="assigned">
     <th class="header checkbox" mat-header-cell *matHeaderCellDef>Assigned</th>
     <td class="cell checkbox" mat-cell *matCellDef="let assignment; let idx = index">
-      <mat-checkbox #assignedCheckbox [checked]="assignment.assigned"
+      <mat-checkbox #assignedCheckbox [checked]="assignment.assigned" color="primary"
         (change)="onAssignedChanged(idx, assignedCheckbox.checked)"></mat-checkbox>
     </td>
   </ng-container>
@@ -47,7 +47,7 @@
   <ng-container matColumnDef="validation">
     <th class="header checkbox" mat-header-cell *matHeaderCellDef>Used to validation</th>
     <td class="cell checkbox" mat-cell *matCellDef="let assignment; let idx = index">
-      <mat-checkbox #validationCheckbox [checked]="assignment.validation"
+      <mat-checkbox #validationCheckbox [checked]="assignment.validation" color="primary"
         (change)="onValidationChanged(idx, validationCheckbox.checked)"></mat-checkbox>
     </td>
   </ng-container>

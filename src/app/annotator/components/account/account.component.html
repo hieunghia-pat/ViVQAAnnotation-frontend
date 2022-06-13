@@ -2,6 +2,7 @@
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
 
-<div class="container">
-    <app-information class="information-container" [information]="information" *ngIf="!fetchingInformation"></app-information>
+<div class="container" *ngIf="!fetchingInformation">
+    <app-information class="information-container" [information]="information"></app-information>
+    <app-account-statistics class="statistics-container" [annotator]="information"></app-account-statistics>
 </div>

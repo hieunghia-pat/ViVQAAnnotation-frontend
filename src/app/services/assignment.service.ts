@@ -47,7 +47,7 @@ export class AssignmentService {
   }
 
   public updateAssignment(assignment: UserSubsetInterface): Observable<any> {
-    return this.httpClient.post(this.PATH_OF_API + `/update/${assignment.id}`, assignment)
+    return this.httpClient.put(this.PATH_OF_API + `/update/${assignment.id}`, assignment)
   }
 
   public deleteAssignment(assignment: UserSubsetInterface): Observable<any> {
@@ -56,6 +56,10 @@ export class AssignmentService {
 
   public getAssignmentByAnnotator(annotatorName: string): Observable<any> {
     return this.httpClient.get(this.PATH_OF_API + `/get/${annotatorName}`)
+  }
+
+  public getAssignedAssignmentByAnnotator(annotatorName: string): Observable<any> {
+    return this.httpClient.get(this.PATH_OF_API + `/get/assigned/${annotatorName}`)
   }
 
   public getStatisticsByUsernamePerSubset(annotatorName: string, subsetId: number) {
