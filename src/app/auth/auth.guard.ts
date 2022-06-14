@@ -1,45 +1,34 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  Router,
-} from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivateChild } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private router: Router,
     private loginService: LoginService
-  ) {}
+  ) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean
-  {
-    console.log("Previous url is " + state.url)
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
-    if (this.loginService.isLoggedIn) {
-      const allowedRole = route.data['role'] as string;
-
-      if (allowedRole) {
-        const match = this.loginService.roleMatch(allowedRole);
-
-        if (match) {
-          return true;
-        } 
-        else {
-          this.router.navigate(["/forbidden"]);
-          return false;
-        }
-      }
+    if (!this.loginService.isLoggedIn()) {
+      this.router.navigate(["/login"], { queryParams: { returnUrl: state.url } })
+      return false
     }
 
-    this.router.navigate(['/login']);
-    return false;
+    const allowedRole = route.data['role'] as string;
+    const match = this.loginService.roleMatch(allowedRole);
+    if (!match) {
+      this.router.navigate(["/login"], { queryParams: { returnUrl: state.url } });
+      return false;
+    }
+
+    return true
+  }
+
+  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this.canActivate(childRoute, state)
   }
 }

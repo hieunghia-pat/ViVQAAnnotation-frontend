@@ -15,6 +15,8 @@ export class LogoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userAuthService.clear()
+    this.router.navigate(["/login"])
   }
 
   logout(): void {

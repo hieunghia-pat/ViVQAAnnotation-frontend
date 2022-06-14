@@ -10,7 +10,7 @@ export class UserAuthService {
     localStorage.setItem('role', JSON.stringify(role));
   }
 
-  public getRole(): [] {
+  public getRole(): string | undefined {
     return JSON.parse(localStorage.getItem('role') || "{}");
   }
 

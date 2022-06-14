@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
-import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminComponent } from './admin/admin.component';
@@ -23,25 +22,24 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminComponent, data: { title: "Admin", role: "ROLE_ADMIN" },
     children: [
-      { path: 'annotators', component: AnnotatorsComponent, data: { title: 'Annotators Management' } },
-      { path: 'guideline', component: GuidelineComponent, data: { title: 'Guideline' } },
-      { path: "subsets", component: SubsetsComponent, data: { title: "Subsets Management" } },
-      { path: "subsets/subset", component: SubsetComponent, data: { title: "Subset" } },
-      { path: "subsets/subset/image", component: ImageItemComponent, data: { title: "Images" } },
-      { path: 'statistics', component: StatisticsComponent, data: { title: 'Statistics' } },
-      { path: "assignment", component: AssignmentComponent, data: { title: "Assignment" } },
+      { path: 'annotators', component: AnnotatorsComponent, data: { title: 'Annotators Management' }, canActivateChild: [AuthGuard] },
+      { path: 'guideline', component: GuidelineComponent, data: { title: 'Guideline' }, canActivateChild: [AuthGuard] },
+      { path: "subsets", component: SubsetsComponent, data: { title: "Subsets Management" }, canActivateChild: [AuthGuard] },
+      { path: "subsets/subset", component: SubsetComponent, data: { title: "Subset" }, canActivateChild: [AuthGuard] },
+      { path: "subsets/subset/image", component: ImageItemComponent, data: { title: "Images" }, canActivateChild: [AuthGuard] },
+      { path: 'statistics', component: StatisticsComponent, data: { title: 'Statistics' }, canActivateChild: [AuthGuard] },
+      { path: "assignment", component: AssignmentComponent, data: { title: "Assignment" }, canActivateChild: [AuthGuard] },
     ],
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'annotator', component: AnnotatorComponent, data: { title: "Annotator", role: "ROLE_ANNOTATOR" },
     children: [
-      { path: "annotation", component: AnnotationComponent, data: { title: "Annotation" } },
-      { path: "account", component: AccountComponent, data: { title: "Account Management" } }
+      { path: "annotation", component: AnnotationComponent, data: { title: "Annotation" }, canActivateChild: [AuthGuard] },
+      { path: "account", component: AccountComponent, data: { title: "Account Management" }, canActivateChild: [AuthGuard] }
     ],
-    // canActivate: [AuthGuard]
-  },
-  { path: "forbidden", component: ForbiddenComponent }
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
