@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
 import { menu } from './components/menu-item/model/menu';
 import { NavItem } from './components/menu-item/model/nav-item';
 
@@ -18,7 +18,12 @@ export class AnnotatorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.router.navigate(["/annotator/annotation"])
+    let prevUrl = this.router.routerState.snapshot.url
+    console.log(prevUrl)
+    if (prevUrl && prevUrl != "/annotator")
+      this.router.navigate([prevUrl])
+    else
+      this.router.navigate(["/annotator/annotation"])
   }
 
   public logout(): void {

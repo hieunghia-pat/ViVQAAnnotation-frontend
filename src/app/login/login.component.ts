@@ -36,10 +36,11 @@ export class LoginComponent implements OnInit {
     if (this.loginService.isLoggedIn()) {
       this.activatedRouter.queryParams.subscribe({
         next: (params: any) => {
-          if (params.returnUrl)
-            this.router.navigate([params.returnUrl])
-          else{
-            let role = this.userAuthService.getRole()!
+          if (params.next)
+            this.router.navigate([params.next])
+          else {
+            let role = this.userAuthService.getRole()
+            console.log(role)
             if (role === "ROLE_ADMIN") {
               this.router.navigate(["/admin"])
             }
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (error: Error) => {
-          console.log(error)
+          console.error(error)
         }
       })
     }
@@ -75,10 +76,10 @@ export class LoginComponent implements OnInit {
         this.toggleFetchingInfo()
         this.activatedRouter.queryParams.subscribe({
           next: (params: any) => {
-            if (params.returnUrl)
-              this.router.navigate([params.returnUrl])
+            if (params.next)
+              this.router.navigate([params.next])
             else
-              if (role === "ROLE_ADMIN") {
+              if (role == "ROLE_ADMIN") {
                 this.router.navigate(["/admin"])
               }
               else {

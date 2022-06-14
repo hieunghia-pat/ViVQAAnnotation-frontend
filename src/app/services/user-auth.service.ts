@@ -7,11 +7,11 @@ export class UserAuthService {
   constructor() {}
 
   public setRole(role: string) {
-    localStorage.setItem('role', JSON.stringify(role));
+    localStorage.setItem('role', role);
   }
 
-  public getRole(): string | undefined {
-    return JSON.parse(localStorage.getItem('role') || "{}");
+  public getRole() {
+    return localStorage.getItem('role')
   }
 
   public setAccessToken(accessToken: string) {
@@ -22,12 +22,14 @@ export class UserAuthService {
     localStorage.setItem("refreshToken", refreshToken)
   }
 
-  public setUsername (username : string){
-    localStorage.setItem("user_name",username);
+  public setUsername (username : string) {
+    localStorage.setItem("userName",username);
   }
+
   public getUsername (){
-    return localStorage.getItem('user_name');
+    return localStorage.getItem('userName');
   }
+
   public getAccessToken(): string {
     return localStorage.getItem('accessToken') || "";
   }

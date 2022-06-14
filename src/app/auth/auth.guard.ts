@@ -14,14 +14,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
     if (!this.loginService.isLoggedIn()) {
-      this.router.navigate(["/login"], { queryParams: { returnUrl: state.url } })
+      this.router.navigate(["/login"], { queryParams: { next: state.url } })
       return false
     }
 
     const allowedRole = route.data['role'] as string;
     const match = this.loginService.roleMatch(allowedRole);
     if (!match) {
-      this.router.navigate(["/login"], { queryParams: { returnUrl: state.url } });
+      this.router.navigate(["/login"], { queryParams: { next: state.url } });
       return false;
     }
 

@@ -16,11 +16,14 @@ export class AdminComponent implements OnDestroy {
   private mediaWatcher: Subscription = new Subscription();
   public menu: NavItem[] = menu;
 
-  constructor(
-    private media: MediaObserver,
-    private router: Router
-  ) {
-    this.router.navigate(["/admin/annotators"])
+  constructor(private media: MediaObserver, private router: Router) {
+    let prevUrl = this.router.routerState.snapshot.url
+    if (prevUrl && prevUrl != "/admin")
+      this.router.navigate([prevUrl])
+    else
+      this.router.navigate(["/admin/annotators"])
+
+    // this.router.navigate(["/admin/annotators"])
     this.mediaWatcher = this.media.media$.subscribe((mediaChange: MediaChange) => {
       this.handleMediaChange(mediaChange);
     })

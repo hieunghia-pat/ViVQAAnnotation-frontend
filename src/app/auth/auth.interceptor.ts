@@ -1,12 +1,4 @@
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-  HttpErrorResponse,
-  HttpClient,
-  HttpHeaders
-} from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse, HttpClient, HttpHeaders } from '@angular/common/http';
 import { RouterStateSnapshot } from '@angular/router';
 import { Router } from '@angular/router';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
@@ -38,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    
+
     if (req.headers.get('No-Auth') === 'True') {
       return next.handle(req.clone());
     }
@@ -62,7 +54,7 @@ export class AuthInterceptor implements HttpInterceptor {
               let state: RouterStateSnapshot = this.router.routerState.snapshot
               this.router.navigate(["/login"], {
                 queryParams: {
-                  returnUrl: state.url
+                  next: state.url
                 }
               })
 
