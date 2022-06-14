@@ -19,10 +19,18 @@
     "target": "es2017",
     "module": "es2020",
     "paths": {
-      "@environments/*": ["./src/environments/*"],
-      "@shared/*": ["./src/app/annotators-related/shared/*"],
-      "@core/*": ["./src/app/annotators-related/core/*"],
-      "@models/*": ["./src/app/annotators-related/models/*"]
+      "@environments/*": [
+        "./src/environments/*"
+      ],
+      "@shared/*": [
+        "./src/app/annotators-related/shared/*"
+      ],
+      "@core/*": [
+        "./src/app/annotators-related/core/*"
+      ],
+      "@models/*": [
+        "./src/app/annotators-related/models/*"
+      ]
     },
     "lib": [
       "es2020",
