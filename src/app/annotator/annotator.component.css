@@ -17,7 +17,8 @@ mat-sidenav {
 }
 
 .logout {
-    left: 100rem;
+    position: absolute;
+    right: 1%;
     font-size: large;
   }
 

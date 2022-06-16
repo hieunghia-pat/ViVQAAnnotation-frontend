@@ -20,6 +20,8 @@ export class AnnotationsComponent implements OnInit {
   @Input() subset!: SubsetInterface
   @Input() annotation!: AnnotationInterface
   @Input() fetchingData!: boolean
+  @Input() isFirstImage!: boolean
+  @Input() isLastImage!: boolean
 
   @Output() imageChange: EventEmitter<number> = new EventEmitter<number>()
 

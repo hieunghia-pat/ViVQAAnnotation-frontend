@@ -45,6 +45,14 @@ export class ImageAnnotationComponent implements OnChanges {
     this.fetchingData = !this.fetchingData
   }
 
+  public isFirstImage(): boolean {
+    return this.currentIndex == 0
+  }
+
+  public isLastImage(): boolean {
+    return this.currentIndex == this.subset.imageIds.length
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     this.currentIndex = 0
     let imageId: number = this.subset.imageIds[this.currentIndex]
